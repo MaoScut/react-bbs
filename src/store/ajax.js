@@ -50,6 +50,6 @@ export function deleteArticle(id) {
   return ajax('post', '/deleteArticle', { articleId: id });
 }
 
-export function fetchCertenFollows(id) {
-  return ajax('get', '/fetchCertainFollows', { id });
+export function fetchCertainFollows(id) {
+  return ajax('get', '/fetchFollows', { id }).then(data => JSON.parse(data));
 }

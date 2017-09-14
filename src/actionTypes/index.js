@@ -17,3 +17,5 @@ export const TOGGLE_REGIST = 'TOGGLE_REGIST';
 
 export const SHOW_EDITOR = 'SHOW_EDITOR';
 export const HIDE_EDITOR = 'HIDE_EDOTOR';
+
+export const FETCH_CERTAINFOLLOWS = 'FETCH_CERTAIN_FOLLOWS';

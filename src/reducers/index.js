@@ -6,6 +6,7 @@ import error from './error';
 import pop from './pop';
 import edit from './edit';
 import article from './article';
+import detail from './detail';
 
 const root = combineReducers({
   articles,
@@ -15,5 +16,6 @@ const root = combineReducers({
   pop,
   edit,
   article,
+  detail,
 });
 export default root;

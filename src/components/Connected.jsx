@@ -8,6 +8,7 @@ import { LoginPop } from './Pop';
 import Regist from './Regist';
 import Error from './Error';
 import PrivateArticles from './PrivateArticles';
+import Detail from './Detail';
 
 function mapDispatchToProps(dispatch) {
   return ({
@@ -47,6 +48,12 @@ const CPrivateArticles = connect(
   state => state,
   mapDispatchToProps,
 )(PrivateArticles);
+
+const CDetail = connect(
+  state => state,
+  mapDispatchToProps,
+)(Detail);
+
 export {
   CHeader as Header,
   CHome as Home,
@@ -54,5 +61,6 @@ export {
   CRegist as Regist,
   CError as Error,
   CPrivateArticles as PrivateArticles,
+  CDetail as Detail,
 };
 

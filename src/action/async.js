@@ -136,3 +136,12 @@ export function deleteArticle(id) {
     api.deleteArticle(id).then(() => dispatch(myArticles()));
   };
 }
+
+export function fetchCertainFollows(id) {
+  return (dispatch) => {
+    api.fetchCertainFollows(id).then(res => dispatch({
+      type: ActionTypes.FETCH_CERTAINFOLLOWS,
+      payload: res,
+    }));
+  };
+}
