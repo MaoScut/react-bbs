@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home</title>
+</head>
+<body>
+  <!-- <a href="/login">login</a> -->
+  <button id="btn1">拉取json</button>
+  <textarea name="" id="result" cols="30" rows="10"></textarea>
+</body>
+</html>
+<script>
+function $(id) {
+  return document.getElementById(id);
+}
+$('btn1').onclick = function() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('get', '/fetch');
+  xhr.onreadystatechange = function() {
+    if (xhr.status === 200 && xhr.readyState === 4) {
+      $('result').value = xhr.responseText;
+    }
+  }
+  xhr.send();
+}
+</script>

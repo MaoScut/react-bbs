@@ -1,0 +1,19 @@
+[{
+  "articleId": "4444440",
+  "title": "mytitle0",
+  "content": "content0",
+  "ownerId": "4444430",
+  "articleType": "sports"
+},{
+  "articleId": "4444441",
+  "title": "mytitle1",
+  "content": "content1",
+  "ownerId": "4444431",
+  "articleType": "technique"
+},{
+  "articleId": "4444442",
+  "title": "mytitle2",
+  "content": "content2",
+  "ownerId": "4444432",
+  "articleType": "nature"
+}]
