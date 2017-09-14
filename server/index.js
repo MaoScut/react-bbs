@@ -75,7 +75,7 @@ app.get('/fetchPrivate', (req, res) => {
   theme.fetchPrivateThemes(req.cookies.userId).then(data => res.end(data));
 });
 app.get('/fetchFollows', (req, res) => {
-  const id = req.param.id;
+  const id = req.query.id;
   follow.getCertainFollows(id).then(data => res.end(data));
 });
 app.post('/login', (req, res) => {
