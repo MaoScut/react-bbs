@@ -121,9 +121,9 @@ export function cancelEdit() {
   };
 }
 
-export function saveArticle(article) {
+export function saveTopic(topic) {
   return (dispatch) => {
-    api.save(article)
+    api.save(topic)
       .then(() => dispatch(fetchArticles()))
       .then(() => dispatch({
         type: ActionTypes.HIDE_EDITOR,
@@ -143,5 +143,12 @@ export function fetchCertainFollows(id) {
       type: ActionTypes.FETCH_CERTAINFOLLOWS,
       payload: res,
     }));
+  };
+}
+
+export function showReplyEditor(topicId) {
+  return {
+    type: ActionTypes.SHOW_REPLY_EDITOR,
+    payload: topicId,
   };
 }
