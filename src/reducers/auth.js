@@ -5,6 +5,8 @@ import * as ActionTypes from '../actionTypes';
 const initialState = {
   auth: false,
   name: undefined,
+  login: false,
+  regist: false,
 };
 if (Cookie.get('sid')) {
   initialState.auth = true;
@@ -22,6 +24,12 @@ const reducer = handleActions({
       auth: false,
       name: undefined,
     };
+  },
+  [ActionTypes.TOGGLE_LOGIN](state) {
+    return { ...state, login: !state.login };
+  },
+  [ActionTypes.TOGGLE_REGIST](state) {
+    return { ...state, regist: !state.regist };
   },
 }, initialState);
 export default reducer;
