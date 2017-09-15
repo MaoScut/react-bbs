@@ -26,11 +26,11 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.actions.showEditor}>+ 发新主题</button>        
-        <List articles={this.props.articles} />
-        {this.props.pop.login ? <LoginPop onSubmit={this.props.actions.loginUser} onCancel={this.props.actions.toggleLogin} /> : null}
-        {this.props.pop.regist ? <RegistPop onSubmit={this.props.actions.registerUser} onCancel={this.props.actions.toggleRegist} /> : null}
-        {this.props.edit.isEditing ? <Editor article={this.props.edit.article} onSave={this.props.actions.saveArticle} onCancel={this.props.actions.cancelEdit} /> : null}
+        <button onClick={this.props.actions.showEditor}>+ 发新主题</button>    
+        <List articles={this.props.topics} />
+        {this.props.auth.login ? <LoginPop onSubmit={this.props.actions.loginUser} onCancel={this.props.actions.toggleLogin} /> : null}
+        {this.props.auth.regist ? <RegistPop onSubmit={this.props.actions.registerUser} onCancel={this.props.actions.toggleRegist} /> : null}
+        {this.props.editor.create ? <Editor article={this.props.editor.topic} onSave={this.props.actions.saveTopic} onCancel={this.props.actions.cancelEdit} /> : null}
       </div>
     );
   }
