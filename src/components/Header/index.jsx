@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 require('./main.scss');
+require('./icon.scss');
 // require('./ionicons.css');
 
 export default function ({ auth, actions }) {
@@ -9,9 +10,11 @@ export default function ({ auth, actions }) {
     return (
       <div className="header">
         <img src="/images/logo.png" alt="logo" />
-        <div className="right"><button onClick={() => actions.logoutUser()}>logout</button></div>
-        <div className="right"><button onClick={() => actions.myArticles()}>我的文章</button></div>
-        <div className="right"><Link to="/">{auth.name}</Link></div>
+        <i className="iconfont icon-sousuo" />
+        <i className="iconfont icon-zhankai" />
+        <div><button onClick={() => actions.logoutUser()}>logout</button></div>
+        {/* <div className="right"><button onClick={() => actions.myArticles()}>我的文章</button></div> */}
+        <div><Link to="/">{auth.name}</Link></div>
       </div>
     );
   }
