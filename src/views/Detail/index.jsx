@@ -1,7 +1,6 @@
 import React from 'react';
-import Floor from '../Floor';
-// import Editor from '../Editor';
-import ReplyPop from '../ReplyPop';
+import Floor from '../../components/Floor';
+import ReplyPop from '../../components/ReplyPop';
 
 export default class Detail extends React.Component {
   constructor(props) {
@@ -24,8 +23,11 @@ export default class Detail extends React.Component {
         </div>
         <button onClick={this.handleClick}>回复</button>
         {this.props.editor.reply ?
-          <ReplyPop onSubmit={this.props.actions.saveReply} onCancel={this.props.actions.cancelEdit} /> :
-          null}
+          <ReplyPop
+            onSubmit={this.props.actions.saveReply}
+            onCancel={this.props.actions.cancelEdit}
+          />
+          : null}
       </div>
     );
   }

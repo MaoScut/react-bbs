@@ -9,12 +9,12 @@ export default function ({ auth, actions }) {
   if (auth.auth) {
     return (
       <div className="header">
-        <img src="/images/logo.png" alt="logo" />
+        <Link to="/"><img src="/images/logo.png" alt="logo" /></Link>
         <i className="iconfont icon-sousuo" />
         <i className="iconfont icon-zhankai" />
         <div><button onClick={() => actions.logoutUser()}>logout</button></div>
         {/* <div className="right"><button onClick={() => actions.myArticles()}>我的文章</button></div> */}
-        <div><Link to="/">{auth.name}</Link></div>
+        <div><Link to="/private">{auth.name}</Link></div>
       </div>
     );
   }
