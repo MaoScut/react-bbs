@@ -1,0 +1,29 @@
+.floor{
+  h1, section{
+    border-bottom: 1px solid #ddd;
+  }
+  h2{
+    line-height: 2;
+  }
+  section{
+    padding-left: 60px;
+    position: relative;
+    .user-head-img{
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      width: 50px;
+    }
+    span{
+      float: right;
+    }
+    aside{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      i{
+        margin: 4px;
+      }
+    }
+  }
+}
