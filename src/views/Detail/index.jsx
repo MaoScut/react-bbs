@@ -25,7 +25,8 @@ export default class Detail extends React.Component {
           <button onClick={this.handleClick}>回复</button>
           {this.props.editor.reply ?
             <ReplyPop
-              onSubmit={this.props.actions.saveReply}
+              topicId={this.props.match.params.articleId}
+              onSubmit={this.props.actions.submitReply}
               onCancel={this.props.actions.cancelEdit}
             />
             : null}

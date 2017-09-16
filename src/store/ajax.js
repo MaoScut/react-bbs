@@ -53,3 +53,7 @@ export function deleteArticle(id) {
 export function fetchCertainFollows(id) {
   return ajax('get', '/fetchFollows', { id }).then(data => JSON.parse(data));
 }
+
+export function sendReply(follow) {
+  return ajax('post', '/follow', follow);
+}

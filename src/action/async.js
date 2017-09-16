@@ -152,3 +152,11 @@ export function showReplyEditor(topicId) {
     payload: topicId,
   };
 }
+
+export function submitReply(follow) {
+  return (dispatch) => {
+    api.sendReply(follow).then(() => dispatch({
+      type: ActionTypes.HIDE_EDITOR,
+    })).then(() => dispatch(fetchCertainFollows(follow.topicId)));
+  };
+}
