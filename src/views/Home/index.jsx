@@ -18,7 +18,7 @@ export default class Home extends React.Component {
       <div>
         <div className="wrap">
           <button onClick={this.props.actions.showEditor}>+ 发新主题</button>
-          <List articles={this.props.topics} />
+          <List items={this.props.topics} />
           {this.props.auth.login ?
             <LoginPop
               onSubmit={this.props.actions.loginUser}

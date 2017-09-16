@@ -17,7 +17,7 @@ export default function Item({ item }) {
   };
   return (
     <tr>
-      <td><Link to={`/detail/${item.articleId}`}>{item.title}</Link></td>
+      <td><Link to={`/detail/${item.id}`}>{item.title}</Link></td>
       {/* <td>{item.title}</td> */}
       <td><span style={styleObj}>{item.articleType}</span></td>
       <td><span>{item.replyNum}</span></td>

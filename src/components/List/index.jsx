@@ -1,8 +1,8 @@
 import React from 'react';
 import Item from '../Item';
 
-export default function List({ articles, onDelete }) {
-  if (!articles) {
+export default function List({ items, onDelete }) {
+  if (!items) {
     return (
       <div>
         loading...
@@ -14,7 +14,7 @@ export default function List({ articles, onDelete }) {
       if (onDelete) onDelete(e.target.value);
     }
   }
-  const list = articles.map(article => <Item key={article.articleId} item={article} />);
+  const list = items.map(topic => <Item key={topic.id} item={topic} />);
   return (
     <table onClick={catchBubble} role="presentation">
       <tr>

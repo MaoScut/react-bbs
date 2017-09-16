@@ -1,6 +1,6 @@
 [
   {
-    "articleId": "4444440",
+    "id": "4444440",
     "title": "使用create-react-app 但是自己写web服务器有什么影响? ",
     "content": "content0",
     "ownerId": "4444430",
@@ -12,14 +12,14 @@
     "replyNum": "8"
   },
   {
-    "articleId": "4444441",
+    "id": "4444441",
     "title": "Webpack热加载配置",
     "content": "content1",
     "ownerId": "4444431",
     "articleType": "教程"
   },
   {
-    "articleId": "4444442",
+    "id": "4444442",
     "title": "this.onClick无法绑定",
     "content": "content2",
     "ownerId": "4444432",
@@ -31,7 +31,7 @@
     "replyNum": "8"
   },
   {
-    "articleId": "0d9dc299-00f6-470a-b3fc-baed9b143c18",
+    "id": "0d9dc299-00f6-470a-b3fc-baed9b143c18",
     "content": "hhh",
     "title": "齐天大圣，react开源项目，踩我。。",
     "articleType": "招聘",
@@ -43,7 +43,7 @@
     "replyNum": "8"
   },
   {
-    "articleId": "040387d4-2b9b-489f-8dfc-ff9817b73232",
+    "id": "040387d4-2b9b-489f-8dfc-ff9817b73232",
     "content": "hhh",
     "title": "关于redux的异步返回的数据的问题",
     "articleType": "提问",
@@ -58,7 +58,7 @@
     "title": "各位都是用的什么ide",
     "content": "223",
     "articleType": "分享",
-    "articleId": "d4621576-2ffc-42d3-85d7-bc1632e975b2",
+    "id": "d4621576-2ffc-42d3-85d7-bc1632e975b2",
     "upNum": 0,
     "scanNum": 0,
     "lastReply": "1天前",
@@ -69,7 +69,7 @@
     "title": "React中如何引入jquery编写的复杂插件？",
     "content": "ddddddd",
     "articleType": "提问",
-    "articleId": "99ef38dc-0801-4e8d-8c7f-9dab51890d78",
+    "id": "99ef38dc-0801-4e8d-8c7f-9dab51890d78",
     "upNum": 0,
     "scanNum": 0,
     "lastReply": "1天前",
@@ -81,7 +81,7 @@
     "content": "qqq",
     "articleType": "分享",
     "ownerId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
-    "articleId": "01f1dc26-b01a-43b4-bc98-6f46ed346852",
+    "id": "01f1dc26-b01a-43b4-bc98-6f46ed346852",
     "upNum": 0,
     "scanNum": 0,
     "lastReply": "1天前",
@@ -93,7 +93,7 @@
     "content": "sss",
     "articleType": "提问",
     "ownerId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
-    "articleId": "e77ad252-b4bf-4ffb-9cfa-0e60732ebe67",
+    "id": "e77ad252-b4bf-4ffb-9cfa-0e60732ebe67",
     "upNum": 0,
     "scanNum": 0,
     "lastReply": "1天前",
@@ -105,7 +105,7 @@
     "content": "sdfg",
     "articleType": "提问",
     "ownerId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
-    "articleId": "8d9bdc10-71aa-4727-82ed-ae27ed09b571",
+    "id": "8d9bdc10-71aa-4727-82ed-ae27ed09b571",
     "upNum": 0,
     "scanNum": 0,
     "lastReply": "1天前",

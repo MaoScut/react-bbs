@@ -13,7 +13,7 @@ const history = require('connect-history-api-fallback');
 const serveStatic = require('serve-static');
 // const database = require('./data');
 const account = require('./data/account');
-const theme = require('./data/theme');
+const topicdb = require('./data/topic');
 const follow = require('./data/follow');
 // const sessionStore = require('./server/sessionStore').store;
 
@@ -69,10 +69,10 @@ app.use(session({
 }));
 
 app.get('/fetchAll', (req, res) => {
-  theme.getAllThemes().then(data => res.end(data));
+  topicdb.getAllTopics().then(data => res.end(data));
 });
 app.get('/fetchPrivate', (req, res) => {
-  theme.fetchPrivateThemes(req.cookies.userId).then(data => res.end(data));
+  topicdb.fetchPrivateTopics(req.cookies.userId).then(data => res.end(data));
 });
 app.get('/fetchFollows', (req, res) => {
   const id = req.query.id;
@@ -104,10 +104,16 @@ app.post('/regist', (req, res) => {
 });
 app.post('/save', (req, res) => {
   req.body.ownerId = req.cookies.userId;
-  theme.save(req.body).then(() => res.end());
+  topicdb.save(req.body).then(() => res.end());
 });
 app.post('/deleteArticle', (req, res) => {
-  theme.deleteTheme(req.body.articleId).then(() => res.end());
+  topicdb.deleteTopic(req.body.articleId).then(() => res.end());
+});
+
+app.post('/follow', (req, res) => {
+  const followObj = req.body;
+  followObj.userId = req.cookies.userId;
+  follow.add(followObj).then(() => res.end());
 });
 
 app.listen(port, (error) => {
