@@ -110,7 +110,7 @@ export function myArticles() {
 export function showEditor() {
   if (Cookie.get('sid')) {
     return {
-      type: ActionTypes.SHOW_EDITOR,
+      type: ActionTypes.SHOW_CREATE_EDITOR,
     };
   }
   return toggleLogin();
