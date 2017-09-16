@@ -12,9 +12,13 @@
   position: absolute;
 }
 
-#root{
-  max-width: 1110px;
-  margin: auto;
+.wrap{
+  width: 1110px;
+  margin: 0 auto;
+  position: relative;
+}
+.header .wrap {
+  text-align: right;
 }
 
 table{

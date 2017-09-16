@@ -18,16 +18,18 @@ export default class Detail extends React.Component {
     if (this.props.detail !== null) content = this.props.detail.map(v => <Floor floor={v} />);
     return (
       <div className="detail">
-        <div>
-          {content}
+        <div className="wrap">
+          <div>
+            {content}
+          </div>
+          <button onClick={this.handleClick}>回复</button>
+          {this.props.editor.reply ?
+            <ReplyPop
+              onSubmit={this.props.actions.saveReply}
+              onCancel={this.props.actions.cancelEdit}
+            />
+            : null}
         </div>
-        <button onClick={this.handleClick}>回复</button>
-        {this.props.editor.reply ?
-          <ReplyPop
-            onSubmit={this.props.actions.saveReply}
-            onCancel={this.props.actions.cancelEdit}
-          />
-          : null}
       </div>
     );
   }
