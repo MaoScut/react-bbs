@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { timeDistance } from '../../utils';
 
 const color = {
   '分享': 'purple',
@@ -22,7 +23,7 @@ export default function Item({ item }) {
       <td><span style={styleObj}>{item.articleType}</span></td>
       <td><span>{item.replyNum}</span></td>
       <td><span>{item.scanNum}</span></td>
-      <td><span>{item.lastReply}</span></td>
+      <td><span>{timeDistance(item.lastReply)}</span></td>
     </tr>
   );
 }
