@@ -28,9 +28,16 @@ table{
 tr{
   border-bottom: 1px solid #ddd;
   line-height: 2.5;
+  td a{
+    color: black;
+    text-decoration: none;
+  }
+  td a:visited{
+    color: gray;
+  }
 }
 tr:first-child{
-  color: #ddd;
+  color: #867d7d;
   border-bottom: 3px solid #ddd;  
 }
 .detail{
@@ -41,4 +48,12 @@ tr:first-child{
       float: right;
     }
   }
+}
+.create-button-container{
+  text-align: right;
+}
+button{
+  border: none;
+  line-height: 2;
+  cursor: pointer;
 }

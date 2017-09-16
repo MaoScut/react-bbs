@@ -1,6 +1,9 @@
 import React from 'react';
 import Floor from '../../components/Floor';
+// import FirstFloor from '../../components/Floor';
 import ReplyPop from '../../components/ReplyPop';
+import '../../style/icon.scss';
+import './main.scss';
 
 export default class Detail extends React.Component {
   constructor(props) {
@@ -15,10 +18,12 @@ export default class Detail extends React.Component {
   }
   render() {
     let content = 'loading';
-    if (this.props.detail !== null) content = this.props.detail.map(v => <Floor floor={v} />);
+    if (this.props.detail !== null) {
+      content = this.props.detail.map(v => <Floor item={v} />);
+    }
     return (
-      <div className="detail">
-        <div className="wrap">
+      <div className="wrap">
+        <div className="detail">
           <div>
             {content}
           </div>

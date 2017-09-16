@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 require('./main.scss');
-require('./icon.scss');
+require('../../style/icon.scss');
 // require('./ionicons.css');
 
 export default function ({ auth, actions }) {
@@ -11,9 +11,9 @@ export default function ({ auth, actions }) {
       <div className="header">
         <div className="wrap">
           <Link to="/"><img src="/images/logo.png" alt="logo" /></Link>
-          <i className="iconfont icon-sousuo" />
+          <i className="iconfont icon-sousuo1" />
           <i className="iconfont icon-zhankai" />
-          <div><button onClick={() => actions.logoutUser()}>logout</button></div>
+          {/* <div><button onClick={() => actions.logoutUser()}>logout</button></div> */}
           {/* <div className="right"><button onClick={() => actions.myArticles()}>我的文章</button></div> */}
           <div><Link to="/private">{auth.name}</Link></div>
         </div>

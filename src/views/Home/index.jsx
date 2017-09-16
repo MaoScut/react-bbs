@@ -17,7 +17,9 @@ export default class Home extends React.Component {
     return (
       <div>
         <div className="wrap">
-          <button onClick={this.props.actions.showEditor}>+ 发新主题</button>
+          <div className="create-button-container">
+            <button onClick={this.props.actions.showEditor}>+ 发新主题</button>
+          </div>
           <List items={this.props.topics} />
           {this.props.auth.login ?
             <LoginPop
