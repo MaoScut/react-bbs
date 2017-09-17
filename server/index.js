@@ -117,11 +117,15 @@ app.post('/follow', (req, res) => {
 });
 
 app.post('/upTopic', (req, res) => {
-  topicdb.upTopic(req.body.id).then(() => res.end());
+  topicdb.upTopic(req.body.id).then(data => res.end(data));
 });
 
 app.post('/upFollow', (req, res) => {
-  follow.upFollow(req.body.followId, req.body.topicId).then(data => res.end(data));
+  follow.upFollow(req.body.followId).then(data => res.end(data));
+});
+
+app.post('/fetchTopicContent', (req, res) => {
+  topicdb.getCertainTopic(req.body.id).then(data => res.end(data));
 });
 
 app.listen(port, (error) => {
