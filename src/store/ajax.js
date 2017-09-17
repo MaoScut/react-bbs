@@ -57,3 +57,11 @@ export function fetchCertainFollows(id) {
 export function sendReply(follow) {
   return ajax('post', '/follow', follow);
 }
+
+export function upTopic(id) {
+  return ajax('post', '/upTopic', { id });
+}
+
+export function upFollow(obj) {
+  return ajax('post', '/upFollow', obj).then(data => JSON.parse(data));
+}

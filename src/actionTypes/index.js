@@ -23,3 +23,5 @@ export const SHOW_REPLY_EDITOR = 'SHOW_REPLY_EDITOR';
 // export const HIDE_REPLY_EDITOR = 'HIDE_REPLY_EDITOR';
 export const SHOW_CREATE_EDITOR = 'SHOW_CREATE_EDITOR';
 export const HIDE_EDITOR = 'HIDE_EDOTOR';
+
+export const UP_TOPIC = 'UP_TOPIC';

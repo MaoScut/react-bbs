@@ -13,7 +13,7 @@ export default function Floor({ item }) {
           <p>{item.content}</p>
         </div>
         <aside>
-          <i className="iconfont icon-aixin" />
+          {item.upNum}<i className="iconfont icon-aixin" id={item.id} />
           <i className="iconfont icon-lianjie" />
           <i className="iconfont icon-gengduo" />
           <span>reply</span>

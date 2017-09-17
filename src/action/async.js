@@ -160,3 +160,20 @@ export function submitReply(follow) {
     })).then(() => dispatch(fetchCertainFollows(follow.topicId)));
   };
 }
+
+export function upTopic(id) {
+  return (dispatch) => {
+    api.upTopic(id).then(() => dispatch({
+      type: ActionTypes.UP_TOPIC,
+    }));
+  };
+}
+
+export function upFollow(obj) {
+  return (dispatch) => {
+    api.upFollow(obj).then(arr => dispatch({
+      type: ActionTypes.FETCH_CERTAINFOLLOWS,
+      payload: arr,
+    }));
+  };
+}

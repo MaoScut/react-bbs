@@ -4,83 +4,95 @@
     "content": "没什啊啊啊啊啊啊啊啊啊啊",
     "userId": "123",
     "userName": "123",
-    "date": "2017-9-14"
+    "date": "2017-9-14",
+    "upNum": 3
   },
   {
     "topicId": "8d9bdc10-71aa-4727-82ed-ae27ed09b571",
     "content": "没什啊啊啊啊啊啊啊啊啊啊",
     "userId": "123",
     "userName": "123",
-    "date": "2017-9-14"
+    "date": "2017-9-14",
+    "upNum": 0
   },
   {
     "topicId": "8d9bdc10-71aa-4727-82ed-ae27ed09b571",
     "content": "没什啊啊啊啊啊啊啊啊啊啊",
     "userId": "123",
     "userName": "123",
-    "date": "2017-9-14"
+    "date": "2017-9-14",
+    "upNum": 0
   },
   {
     "topicId": "8d9bdc10-71aa-4727-82ed-ae27ed09b571",
     "content": "没什啊啊啊啊啊啊啊啊啊啊",
     "userId": "123",
     "userName": "123",
-    "date": "2017-9-14"
+    "date": "2017-9-14",
+    "upNum": 0
   },
   {
     "content": "手动阀手动阀",
     "topicId": "8d9bdc10-71aa-4727-82ed-ae27ed09b571",
     "userId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
     "id": "d49f563a-a106-466e-bf05-d7770a007f7b",
-    "date": "2017-09-16T02:21:58.618Z"
+    "date": "2017-09-16T02:21:58.618Z",
+    "upNum": 0
   },
   {
     "content": "再次测试回复",
     "topicId": "8d9bdc10-71aa-4727-82ed-ae27ed09b571",
     "userId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
     "id": "a3792c1c-9cf2-4b47-85e6-8043b5bff77e",
-    "date": "2017-09-16T03:21:37.635Z"
+    "date": "2017-09-16T03:21:37.635Z",
+    "upNum": 0
   },
   {
     "content": "呵呵呵",
     "topicId": "8d9bdc10-71aa-4727-82ed-ae27ed09b571",
     "userId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
     "id": "930d42e7-a28f-4f30-bf23-634fb79941fb",
-    "date": "2017-09-16T03:25:32.198Z"
+    "date": "2017-09-16T03:25:32.198Z",
+    "upNum": 0
   },
   {
     "content": "哈哈哈哈哈哈",
     "topicId": "8d9bdc10-71aa-4727-82ed-ae27ed09b571",
     "userId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
     "id": "c8407362-a4b5-4824-b8c6-b097a04f8215",
-    "date": "2017-09-16T03:25:54.696Z"
+    "date": "2017-09-16T03:25:54.696Z",
+    "upNum": 0
   },
   {
     "content": "嘿嘿额黑",
     "topicId": "4444440",
     "userId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
     "id": "e63208ed-1ad9-460b-90c5-74ee856dd2c3",
-    "date": "2017-09-16T11:25:32.597Z"
+    "date": "2017-09-16T11:25:32.597Z",
+    "upNum": 7
   },
   {
     "content": "嗯嗯嗯嗯",
     "topicId": "4444440",
     "userId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
     "id": "de13422e-20c1-4795-a5e6-8fbeee6293b3",
-    "date": "2017-09-16T11:25:40.791Z"
+    "date": "2017-09-16T11:25:40.791Z",
+    "upNum": 4
   },
   {
     "content": "滚",
     "topicId": "4444440",
     "userId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
     "id": "ce0a2437-0e18-4810-8f54-4bce0ff9f963",
-    "date": "2017-09-16T11:59:59.293Z"
+    "date": "2017-09-16T11:59:59.293Z",
+    "upNum": 4
   },
   {
     "content": "vscode",
     "topicId": "d4621576-2ffc-42d3-85d7-bc1632e975b2",
     "userId": "c264f289-5081-4ee4-8abc-e8dccb8fb414",
     "id": "5565e346-4009-4c0f-90ed-56de71d154dd",
-    "date": "2017-09-16T13:09:48.467Z"
+    "date": "2017-09-16T13:09:48.467Z",
+    "upNum": 0
   }
 ]

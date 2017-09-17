@@ -9,12 +9,28 @@ export default class Detail extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.upClick = this.upClick.bind(this);
   }
   componentDidMount() {
     this.props.actions.fetchCertainFollows(this.props.match.params.articleId);
   }
   handleClick() {
     this.props.actions.showReplyEditor(this.props.match.params.articleId);
+  }
+  upClick(e) {
+    if (!e.target.className.includes('icon-aixin')) return false;
+    // this.props.actions.upTopic(this.props.detail[0].id);
+    this.props.actions.upFollow({
+      followId: e.target.id,
+      topicId: this.props.detail[0].id,
+    });
+    return false;
+  }
+  shareClick() {
+    alert('none');
+  }
+  replyClick() {
+
   }
   render() {
     let content = 'loading';
@@ -23,7 +39,7 @@ export default class Detail extends React.Component {
     }
     return (
       <div className="wrap">
-        <div className="detail">
+        <div className="detail" onClick={this.upClick} role="presentation">
           <div>
             {content}
           </div>

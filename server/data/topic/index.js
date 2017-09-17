@@ -64,10 +64,21 @@ function deleteTopic(id) {
     .then(topics => writeAllTopics(topics.filter(topic => topic.id !== id)));
 }
 
+function upTopic(id) {
+  return getAllTopics()
+    .then(data => JSON.parse(data))
+    .then((arr) => {
+      const targetTopic = arr.find(v => v.id === id);
+      targetTopic.upNum = Number(targetTopic.upNum) + 1;
+      return arr;
+    })
+    .then(arr => writeAllTopics(arr));
+}
 
 module.exports = {
   getAllTopics,
   fetchPrivateTopics,
   save,
   deleteTopic,
+  upTopic,
 };

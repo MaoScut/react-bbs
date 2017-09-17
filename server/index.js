@@ -116,6 +116,14 @@ app.post('/follow', (req, res) => {
   follow.add(followObj).then(() => res.end());
 });
 
+app.post('/upTopic', (req, res) => {
+  topicdb.upTopic(req.body.id).then(() => res.end());
+});
+
+app.post('/upFollow', (req, res) => {
+  follow.upFollow(req.body.followId, req.body.topicId).then(data => res.end(data));
+});
+
 app.listen(port, (error) => {
   if (error) {
     console.error(error);

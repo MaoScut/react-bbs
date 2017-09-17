@@ -41,7 +41,21 @@ function getCertainFollows(id) {
   //   .then(res => res.filter(v => v.topicId === id))
   //   .then(arr => JSON.stringify(arr));
 }
+
+function upFollow(followId, topicId) {
+  return getAllFollows()
+    .then(data => JSON.parse(data))
+    .then((arr) => {
+      const targetFollow = arr.find(v => v.id === followId);
+      targetFollow.upNum = Number(targetFollow.upNum) + 1;
+      return arr;
+    })
+    .then(arr => writeAllFollows(arr))
+    .then(() => getCertainFollows(topicId));
+}
+
 module.exports = {
   add,
   getCertainFollows,
+  upFollow,
 };
