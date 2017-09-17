@@ -163,8 +163,9 @@ export function submitReply(follow) {
 
 export function upTopic(id) {
   return (dispatch) => {
-    api.upTopic(id).then(() => dispatch({
-      type: ActionTypes.UP_TOPIC,
+    api.upTopic(id).then(topic => dispatch({
+      type: ActionTypes.FETCH_TOPIC_CONTENT,
+      payload: topic,
     }));
   };
 }
@@ -174,6 +175,15 @@ export function upFollow(obj) {
     api.upFollow(obj).then(arr => dispatch({
       type: ActionTypes.FETCH_CERTAINFOLLOWS,
       payload: arr,
+    }));
+  };
+}
+
+export function fetchTopicContent(id) {
+  return (dispatch) => {
+    api.fetchTopicContent(id).then(topic => dispatch({
+      type: ActionTypes.FETCH_TOPIC_CONTENT,
+      payload: topic,
     }));
   };
 }
