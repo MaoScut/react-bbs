@@ -29,29 +29,27 @@ function add(follow) {
     .then(res => writeAllFollows(res.concat(createFollowObj(follow))));
 }
 function getCertainFollows(id) {
-  return topic.getAllTopics()
+  return getAllFollows()
     .then(data => JSON.parse(data))
-    .then(arr => arr.filter(v => v.id === id)[0])
-    .then(topicObj => getAllFollows()
-      .then(data => JSON.parse(data))
-      .then(res => [topicObj, ...res.filter(v => v.topicId === id)])
-      .then(arr => JSON.stringify(arr)));
+    .then(res => res.filter(v => v.topicId === id))
+    .then(arr => JSON.stringify(arr));
   // return getAllFollows()
   //   .then(data => JSON.parse(data))
   //   .then(res => res.filter(v => v.topicId === id))
   //   .then(arr => JSON.stringify(arr));
 }
 
-function upFollow(followId, topicId) {
+function upFollow(followId) {
   return getAllFollows()
     .then(data => JSON.parse(data))
     .then((arr) => {
       const targetFollow = arr.find(v => v.id === followId);
       targetFollow.upNum = Number(targetFollow.upNum) + 1;
-      return arr;
+      writeAllFollows(arr);
+      // 这里就藏着目标主题了啊，不用再传topicId了
+      return arr.filter(v => v.topicId === targetFollow.topicId);
     })
-    .then(arr => writeAllFollows(arr))
-    .then(() => getCertainFollows(topicId));
+    .then(follows => JSON.stringify(follows));
 }
 
 module.exports = {
