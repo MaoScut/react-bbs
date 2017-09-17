@@ -70,9 +70,18 @@ function upTopic(id) {
     .then((arr) => {
       const targetTopic = arr.find(v => v.id === id);
       targetTopic.upNum = Number(targetTopic.upNum) + 1;
-      return arr;
+      // 之后请加上错误处理！
+      writeAllTopics(arr).then(() => console.log('success'));
+      return targetTopic;
     })
-    .then(arr => writeAllTopics(arr));
+    .then(topic => JSON.stringify(topic));
+}
+
+function getCertainTopic(id) {
+  return getAllTopics()
+    .then(data => JSON.parse(data))
+    .then(arr => arr.find(v => v.id === id))
+    .then(topic => JSON.stringify(topic));
 }
 
 module.exports = {
@@ -81,4 +90,5 @@ module.exports = {
   save,
   deleteTopic,
   upTopic,
+  getCertainTopic,
 };
