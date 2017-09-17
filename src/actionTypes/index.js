@@ -25,3 +25,5 @@ export const SHOW_CREATE_EDITOR = 'SHOW_CREATE_EDITOR';
 export const HIDE_EDITOR = 'HIDE_EDOTOR';
 
 export const UP_TOPIC = 'UP_TOPIC';
+
+export const FETCH_TOPIC_CONTENT = 'FETCH_TOPIC_CONTENT';

@@ -59,9 +59,13 @@ export function sendReply(follow) {
 }
 
 export function upTopic(id) {
-  return ajax('post', '/upTopic', { id });
+  return ajax('post', '/upTopic', { id }).then(data => JSON.parse(data));
 }
 
 export function upFollow(obj) {
   return ajax('post', '/upFollow', obj).then(data => JSON.parse(data));
+}
+
+export function fetchTopicContent(id) {
+  return ajax('post', '/fetchTopicContent', { id }).then(data => JSON.parse(data));
 }

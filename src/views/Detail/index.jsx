@@ -1,5 +1,6 @@
 import React from 'react';
 import Floor from '../../components/Floor';
+import FirstFloor from '../../components/FirstFloor';
 // import FirstFloor from '../../components/Floor';
 import ReplyPop from '../../components/ReplyPop';
 import '../../style/icon.scss';
@@ -12,6 +13,7 @@ export default class Detail extends React.Component {
     this.upClick = this.upClick.bind(this);
   }
   componentDidMount() {
+    this.props.actions.fetchTopicContent(this.props.match.params.articleId);
     this.props.actions.fetchCertainFollows(this.props.match.params.articleId);
   }
   handleClick() {
@@ -22,7 +24,6 @@ export default class Detail extends React.Component {
     // this.props.actions.upTopic(this.props.detail[0].id);
     this.props.actions.upFollow({
       followId: e.target.id,
-      topicId: this.props.detail[0].id,
     });
     return false;
   }
@@ -33,15 +34,20 @@ export default class Detail extends React.Component {
 
   }
   render() {
-    let content = 'loading';
-    if (this.props.detail !== null) {
-      content = this.props.detail.map(v => <Floor item={v} />);
+    let topic = 'loading';
+    let follows = 'loading';
+    if (this.props.detail.topic !== null) {
+      topic = <FirstFloor upAction={this.props.actions.upTopic} item={this.props.detail.topic} />;
+    }
+    if (this.props.detail.follows !== null) {
+      follows = this.props.detail.follows.map(v => <Floor item={v} />);
     }
     return (
       <div className="wrap">
         <div className="detail" onClick={this.upClick} role="presentation">
           <div>
-            {content}
+            {topic}
+            {follows}
           </div>
           <button onClick={this.handleClick}>回复</button>
           {this.props.editor.reply ?
