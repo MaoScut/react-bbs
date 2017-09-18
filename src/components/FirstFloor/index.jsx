@@ -46,11 +46,22 @@ export default class FirstFloor extends React.Component {
             <p>用户名<span>{timeDistance(item.date)}</span></p>
             <p>{item.content}</p>
           </div>
-          <aside>
+          <aside className="clearfix">
             {item.upNum}<i className="iconfont icon-aixin" id={item.id} onClick={this.upClick} role="presentation" />
             <i className="iconfont icon-lianjie" />
             <i className="iconfont icon-gengduo" />
             <span>reply</span>
+          </aside>
+          {/* 帖子详情 */}
+          <aside className="topic-detail">
+            <li>创建时间<br />{timeDistance(item.date)}</li>
+            <li>最后回复<br />{timeDistance(item.lastReply)}</li>
+            <li>回复<br />{item.replyNum}</li>
+            <li>浏览<br />{item.scanNum}</li>
+            {/* <li>用户<br />{item.date}</li> */}
+            <li>赞<br />{item.upNum}</li>
+            {/* <li>链接<br />{item.date}</li> */}
+            {/* <li>参与者<br />{item.date}</li> */}
           </aside>
         </section>
       </div>
