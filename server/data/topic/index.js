@@ -80,8 +80,26 @@ function upTopic(id) {
 function getCertainTopic(id) {
   return getAllTopics()
     .then(data => JSON.parse(data))
-    .then(arr => arr.find(v => v.id === id))
+    .then((arr) => {
+      const target = arr.find(v => v.id === id);
+      target.scanNum = Number(target.scanNum) + 1;
+      writeAllTopics(arr);
+      return target;
+    })
     .then(topic => JSON.stringify(topic));
+}
+
+function fetchTopicsForHome() {
+  return getAllTopics().then(data => JSON.parse(data))
+    .then((arr) => {
+      arr.forEach((topic) => {
+        delete topic.content;
+        delete topic.ownerId;
+        delete topic.date;
+      });
+      return arr;
+    })
+    .then(arr => JSON.stringify(arr));
 }
 
 module.exports = {
@@ -91,4 +109,6 @@ module.exports = {
   deleteTopic,
   upTopic,
   getCertainTopic,
+  writeAllTopics,
+  fetchTopicsForHome,
 };

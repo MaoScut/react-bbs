@@ -69,7 +69,7 @@ app.use(session({
 }));
 
 app.get('/fetchAll', (req, res) => {
-  topicdb.getAllTopics().then(data => res.end(data));
+  topicdb.fetchTopicsForHome().then(data => res.end(data));
 });
 app.get('/fetchPrivate', (req, res) => {
   topicdb.fetchPrivateTopics(req.cookies.userId).then(data => res.end(data));
