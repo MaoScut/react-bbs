@@ -26,7 +26,14 @@ function createFollowObj(follow) {
 function add(follow) {
   return getAllFollows()
     .then(data => JSON.parse(data))
-    .then(res => writeAllFollows(res.concat(createFollowObj(follow))));
+    .then((res) => {
+      topic.getAllTopics().then(data => JSON.parse(data)).then((arr) => {
+        const target = arr.find(v => v.id === follow.topicId);
+        target.replyNum = Number(target.replyNum) + 1;
+        return topic.writeAllTopics(arr);
+      });
+      return writeAllFollows(res.concat(createFollowObj(follow)));
+    });
 }
 function getCertainFollows(id) {
   return getAllFollows()
