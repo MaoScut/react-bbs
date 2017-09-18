@@ -9,6 +9,7 @@ function readAll(p) {
   });
 }
 
+// 写入后返回数组
 function writeAll(arr, p) {
   return new Promise((resolve, reject) => {
     fs.writeFile(p, JSON.stringify(arr, null, 2), (e) => {
