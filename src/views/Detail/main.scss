@@ -1,3 +1,18 @@
 .detail{
   width: 800px;
+  .topic-detail{
+    li{
+      display: inline-block;
+      list-style: none;
+      margin: 5px;
+      border: none;
+    }
+    border: 1px solid dimgray;
+    background-color: #ddd;
+  }
+}
+.clearfix::after{
+  content: '';
+  display: block;
+  clear: both;
 }
