@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class ReplyPop extends React.Component {
   constructor(props) {
@@ -36,3 +37,8 @@ export default class ReplyPop extends React.Component {
     );
   }
 }
+ReplyPop.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  topicId: PropTypes.string.isRequired,
+  onCancel: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './main.scss';
 import { timeDistance } from '../../utils';
 
@@ -22,3 +23,9 @@ export default function Floor({ item }) {
     </div>
   );
 }
+Floor.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    upNum: PropTypes.string,
+  }).isRequired,
+};

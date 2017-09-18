@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // import './main.scss';
 import { timeDistance } from '../../utils';
 
@@ -47,7 +48,13 @@ export default class FirstFloor extends React.Component {
             <p>{item.content}</p>
           </div>
           <aside className="clearfix">
-            {item.upNum}<i className="iconfont icon-aixin" id={item.id} onClick={this.upClick} role="presentation" />
+            {item.upNum}
+            <i
+              className="iconfont icon-aixin"
+              id={item.id}
+              onClick={this.upClick}
+              role="presentation"
+            />
             <i className="iconfont icon-lianjie" />
             <i className="iconfont icon-gengduo" />
             <span>reply</span>
@@ -68,3 +75,10 @@ export default class FirstFloor extends React.Component {
     );
   }
 }
+FirstFloor.propTypes = {
+  upAction: PropTypes.func.isRequired,
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    upNum: PropTypes.string,
+  }).isRequired,
+};

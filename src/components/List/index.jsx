@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Item from '../Item';
 
 export default function List({ items, onDelete }) {
@@ -28,25 +29,34 @@ export default function List({ items, onDelete }) {
     </table>
   );
 }
-export function ListFactory(child) {
-  return function list (props) {
-    if (!props.articles) {
-      return (
-        <div>
-          loading...
-        </div>
-      );
-    }
-    function catchBubble(e) {
-      if (e.target.className === 'delete-btn') {
-        if (props.onDelete) props.onDelete(e.target.value);
-      }
-    }
-    const list = props.articles.map(article => child({ item: article }));
-    return (
-      <ul onClick={catchBubble} role="presentation">
-        {list}
-      </ul>
-    );
-  };
-}
+// export function ListFactory(child) {
+//   return function list(props) {
+//     if (!props.articles) {
+//       return (
+//         <div>
+//           loading...
+//         </div>
+//       );
+//     }
+//     function catchBubble(e) {
+//       if (e.target.className === 'delete-btn') {
+//         if (props.onDelete) props.onDelete(e.target.value);
+//       }
+//     }
+//     const list = props.articles.map(article => child({ item: article }));
+//     return (
+//       <ul onClick={catchBubble} role="presentation">
+//         {list}
+//       </ul>
+//     );
+//   };
+// }
+
+List.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    upNum: PropTypes.string,
+  })).isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
+

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Regist extends React.Component {
   constructor(props) {
@@ -39,11 +40,18 @@ export default class Regist extends React.Component {
             }}
             onChange={this.savePassword}
           />
-          <button onClick={() => this.props.onSubmit({ email: this.state.email, password: this.state.password })}>regist</button>
+          <button onClick={() => this.props.onSubmit({
+            email: this.state.email,
+            password: this.state.password,
+          })}
+          >regist</button>
           <button onClick={() => this.props.onCancel()}>cancel</button>
         </div>
       </div>
     );
   }
 }
-
+Regist.propTypes = {
+  onCancel: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};

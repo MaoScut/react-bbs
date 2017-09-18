@@ -1,13 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ListFactory } from '../List';
 import DeleteLi from '../OptionalItem';
 
 const List = ListFactory(DeleteLi);
-// export default function ({ privateArticles, actions }) {
-//   if (privateArticles === null) actions.myArticles();
-//   else return <List articles={privateArticles || []} onDelete={actions.deleteArticle} />;
-// }
-export default class extends React.Component {
+export default class PrivateArticles extends React.Component {
   componentDidMount() {
     if (this.props.privateArticles === null) this.props.actions.myArticles();
   }
@@ -19,3 +16,11 @@ export default class extends React.Component {
     />);
   }
 }
+PrivateArticles.propTypes = {
+  privateArticles: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    upNum: PropTypes.string,
+  })).isRequired,
+  actions: PropTypes.arrayOf(PropTypes.func).isRequired,
+};
+

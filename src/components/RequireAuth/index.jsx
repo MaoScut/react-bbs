@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 import history from '../../history';
 
 export default function (ComposedComponent) {
@@ -23,6 +23,9 @@ export default function (ComposedComponent) {
       return <ComposedComponent {...this.props} />;
     }
   }
+  Authentication.propTypes = {
+    authenticated: PropTypes.bool.isRequired,
+  };
   return connect(
     state => ({
       authenticated: state.auth.auth,

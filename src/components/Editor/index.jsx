@@ -1,8 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 // 先实现更新
-export default class extends React.Component {
+export default class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.save = this.save.bind(this);
@@ -45,15 +46,44 @@ export default class extends React.Component {
   render() {
     return (
       <div>
-        标题<input type="text" value={this.state.title} ref={input => this.titleInput = input} onChange={this.saveTitle} />
-        分类<input type="text" value={this.state.articleType} ref={input => this.articleTypeInput = input} onChange={this.saveArticleType} />
-        内容<input type="text" value={this.state.content} ref={input => this.contentInput = input} onChange={this.saveContent} />
+        标题<input
+          type="text"
+          value={this.state.title}
+          ref={(input) => {
+            this.titleInput = input;
+          }}
+          onChange={this.saveTitle}
+        />
+        分类<input
+          type="text"
+          value={this.state.articleType}
+          ref={(input) => {
+            this.articleTypeInput = input;
+          }}
+          onChange={this.saveArticleType}
+        />
+        内容<input
+          type="text"
+          value={this.state.content}
+          ref={(input) => {
+            this.contentInput = input;
+          }}
+          onChange={this.saveContent}
+        />
         <button onClick={this.save}>add/update</button>
         <button onClick={() => this.props.onCancel()}>cancel</button>
       </div>
     );
   }
 }
+Editor.propTypes = {
+  article: PropTypes.shape({
+    id: PropTypes.string,
+    content: PropTypes.string,
+  }).isRequired,
+  onSave: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+};
 // export default class MyEditor extends React.Component {
 //   constructor(props) {
 //     super(props);

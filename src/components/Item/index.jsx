@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { timeDistance } from '../../utils';
 
 const color = {
-  '分享': 'purple',
-  '教程': 'blue',
-  '提问': 'green',
-  '招聘': 'grey',
-  '作品': 'red',
+  分享: 'purple',
+  教程: 'blue',
+  提问: 'green',
+  招聘: 'grey',
+  作品: 'red',
 };
 
 export default function Item({ item }) {
@@ -27,3 +28,11 @@ export default function Item({ item }) {
     </tr>
   );
 }
+
+Item.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    upNum: PropTypes.string,
+  }).isRequired,
+};
+

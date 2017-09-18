@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -39,7 +40,11 @@ export default class Login extends React.Component {
             }}
             onChange={this.savePassword}
           />
-          <button onClick={() => this.props.onSubmit({ email: this.state.email, password: this.state.password })}>login</button>
+          <button onClick={() => this.props.onSubmit({
+            email: this.state.email,
+            password: this.state.password,
+          })}
+          >login</button>
           <button onClick={() => this.props.onCancel()}>cancel</button>
         </div>
       </div>
@@ -47,6 +52,10 @@ export default class Login extends React.Component {
   }
 }
 
+Login.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+};
 // export default connect(
 //   state => state,
 //   dispatch => ({
