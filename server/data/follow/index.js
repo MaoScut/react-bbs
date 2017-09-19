@@ -9,6 +9,7 @@ const path = require('path');
 const uuid = require('uuid');
 const { writeAll, readAll } = require('../utils');
 const topic = require('../topic');
+const account = require('../account');
 
 const followPath = path.resolve(__dirname, 'follow.json');
 
@@ -21,6 +22,7 @@ function writeAllFollows(arr) {
 function createFollowObj(follow) {
   follow.id = uuid.v4();
   follow.date = new Date();
+  follow.upNum = 0;
   return follow;
 }
 function add(follow) {
@@ -35,10 +37,29 @@ function add(follow) {
       return writeAllFollows(res.concat(createFollowObj(follow)));
     });
 }
-function getCertainFollows(id) {
+function linkAccount(id) {
   return getAllFollows()
     .then(data => JSON.parse(data))
     .then(res => res.filter(v => v.topicId === id))
+    .then(follows => account.getAllAccounts()
+      .then(data => JSON.parse(data))
+      .then((accounts) => {
+        follows.forEach((v) => {
+          // const test = accounts.find(acc => acc.id = v.userId);
+          const tmp = accounts.find(acc => acc.id === v.userId);
+          v.headImg = tmp.hasHeadImg;
+          v.userName = tmp.userName;
+        });
+        return follows;
+      }));
+}
+
+function getCertainFollows(id) {
+  // return getAllFollows()
+  //   .then(data => JSON.parse(data))
+  //   .then(res => res.filter(v => v.topicId === id))
+  //   .then(arr => JSON.stringify(arr));
+  return linkAccount(id)
     .then(arr => JSON.stringify(arr));
   // return getAllFollows()
   //   .then(data => JSON.parse(data))
@@ -52,12 +73,14 @@ function upFollow(followId) {
     .then((arr) => {
       const targetFollow = arr.find(v => v.id === followId);
       targetFollow.upNum = Number(targetFollow.upNum) + 1;
-      writeAllFollows(arr);
+      return writeAllFollows(arr).then(() => linkAccount(targetFollow.topicId));
       // 这里就藏着目标主题了啊，不用再传topicId了
-      return arr.filter(v => v.topicId === targetFollow.topicId);
+      // return linkAccount(targetFollow.topicId);
+      // return arr.filter(v => v.topicId === targetFollow.topicId);
     })
     .then(follows => JSON.stringify(follows));
 }
+
 
 module.exports = {
   add,
