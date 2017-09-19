@@ -79,6 +79,14 @@ FirstFloor.propTypes = {
   upAction: PropTypes.func.isRequired,
   item: PropTypes.shape({
     id: PropTypes.string,
+    content: PropTypes.string,
+    title: PropTypes.string,
+    ownerId: PropTypes.string,
+    type: PropTypes.string,
     upNum: PropTypes.string,
+    scanNum: PropTypes.string,
+    lastReply: PropTypes.string,
+    date: PropTypes.string,
+    replyNum: PropTypes.string,
   }).isRequired,
 };

@@ -7,18 +7,18 @@ export default class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.save = this.save.bind(this);
-    this.saveArticleType = this.saveArticleType.bind(this);
+    this.saveType = this.saveType.bind(this);
     this.saveTitle = this.saveTitle.bind(this);
     this.saveContent = this.saveContent.bind(this);
-    if (this.props.article) {
+    if (this.props.item) {
       this.state = {
-        ...this.props.article,
+        ...this.props.item,
       };
     } else {
       this.state = {
         title: '',
         content: '',
-        articleType: '',
+        type: '',
       };
     }
   }
@@ -37,7 +37,7 @@ export default class Editor extends React.Component {
   }
   saveArticleType() {
     this.setState({
-      articleType: this.articleTypeInput.value,
+      type: this.typeInput.value,
     });
   }
   save() {
@@ -58,9 +58,9 @@ export default class Editor extends React.Component {
           type="text"
           value={this.state.articleType}
           ref={(input) => {
-            this.articleTypeInput = input;
+            this.typeInput = input;
           }}
-          onChange={this.saveArticleType}
+          onChange={this.savetype}
         />
         内容<input
           type="text"
@@ -77,9 +77,17 @@ export default class Editor extends React.Component {
   }
 }
 Editor.propTypes = {
-  article: PropTypes.shape({
+  item: PropTypes.shape({
     id: PropTypes.string,
     content: PropTypes.string,
+    title: PropTypes.string,
+    ownerId: PropTypes.string,
+    type: PropTypes.string,
+    upNum: PropTypes.string,
+    scanNum: PropTypes.string,
+    lastReply: PropTypes.string,
+    date: PropTypes.string,
+    replyNum: PropTypes.string,
   }).isRequired,
   onSave: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,

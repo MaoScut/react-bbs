@@ -55,7 +55,12 @@ export default function List({ items, onDelete }) {
 List.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
+    title: PropTypes.string,
+    type: PropTypes.string,
     upNum: PropTypes.string,
+    scanNum: PropTypes.string,
+    lastReply: PropTypes.string,
+    replyNum: PropTypes.string,
   })).isRequired,
   onDelete: PropTypes.func.isRequired,
 };

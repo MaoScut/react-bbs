@@ -32,7 +32,12 @@ export default function Item({ item }) {
 Item.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.string,
+    title: PropTypes.string,
+    type: PropTypes.string,
     upNum: PropTypes.string,
+    scanNum: PropTypes.string,
+    lastReply: PropTypes.string,
+    replyNum: PropTypes.string,
   }).isRequired,
 };
 
