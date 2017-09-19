@@ -12,7 +12,7 @@ const color = {
 };
 
 export default function Item({ item }) {
-  const borderColor = color[item.articleType];
+  const borderColor = color[item.type];
   const styleObj = {
     borderLeft: `5px solid ${borderColor}`,
     paddingLeft: '4px',
@@ -21,7 +21,7 @@ export default function Item({ item }) {
     <tr>
       <td><Link to={`/detail/${item.id}`}>{item.title}</Link></td>
       {/* <td>{item.title}</td> */}
-      <td><span style={styleObj}>{item.articleType}</span></td>
+      <td><span style={styleObj}>{item.type}</span></td>
       <td><span>{item.replyNum}</span></td>
       <td><span>{item.scanNum}</span></td>
       <td><span>{timeDistance(item.lastReply)}</span></td>

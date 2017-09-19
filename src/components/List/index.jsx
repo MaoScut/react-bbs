@@ -61,6 +61,7 @@ List.propTypes = {
     scanNum: PropTypes.string,
     lastReply: PropTypes.string,
     replyNum: PropTypes.string,
+    userName: PropTypes.string,
   })).isRequired,
   onDelete: PropTypes.func.isRequired,
 };

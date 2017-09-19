@@ -10,7 +10,7 @@ const initialState = {
 };
 if (Cookie.get('sid')) {
   initialState.auth = true;
-  initialState.name = Cookie.get('email');
+  initialState.name = Cookie.get('userName');
 }
 const reducer = handleActions({
   [ActionTypes.AUTH_USER](state, action) {

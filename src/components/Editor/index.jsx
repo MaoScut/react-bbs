@@ -35,7 +35,7 @@ export default class Editor extends React.Component {
       content: this.contentInput.value,
     });
   }
-  saveArticleType() {
+  saveType() {
     this.setState({
       type: this.typeInput.value,
     });
@@ -56,11 +56,11 @@ export default class Editor extends React.Component {
         />
         分类<input
           type="text"
-          value={this.state.articleType}
+          value={this.state.type}
           ref={(input) => {
             this.typeInput = input;
           }}
-          onChange={this.savetype}
+          onChange={this.saveType}
         />
         内容<input
           type="text"
