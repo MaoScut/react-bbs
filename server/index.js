@@ -91,19 +91,19 @@ app.post('/login', (req, res) => {
   });
 });
 app.post('/regist', (req, res) => {
-  account.registerUser(req.body.email, req.body.password).then((acc) => {
+  account.registerUser(req.body).then((acc) => {
     // req.session.email = acc.email;
     // req.session.userId = acc.id;
     // req.session.save((err) => {
     //   if (err) console.log(err);
     //   else console.log('save session');
     // });
-    res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, [`email=${acc.email}`], [`userId=${acc.id}`]]);
+    res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, `email=${acc.email}`, `userId=${acc.id}`, `userName=${acc.userName}`]);
     res.end();
   });
 });
 app.post('/save', (req, res) => {
-  req.body.ownerId = req.cookies.userId;
+  req.body.userId = req.cookies.userId;
   topicdb.save(req.body).then(() => res.end());
 });
 app.post('/deleteArticle', (req, res) => {
@@ -126,6 +126,11 @@ app.post('/upFollow', (req, res) => {
 
 app.post('/fetchTopicContent', (req, res) => {
   topicdb.getCertainTopic(req.body.id).then(data => res.end(data));
+});
+
+app.post('/setUserHeadImg', (req, res) => {
+  const id = req.cookies.userId;
+  account.setImg(id, req.body.imgUri).then(data => res.end(data));
 });
 
 app.listen(port, (error) => {
