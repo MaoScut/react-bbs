@@ -1,5 +1,7 @@
 const path = require('path');
 const uuid = require('uuid');
+const fs = require('fs');
+const follow = require('../follow');
 const { writeAll, readAll } = require('../utils');
 
 // const themesPath = path.join(__dirname, 'themes.json');
@@ -27,7 +29,7 @@ function loginCheck(email, password) {
     });
 }
 // 注册成功，返回id和邮箱，失败就抛出异常
-function registerUser(email, password) {
+function registerUser({ email, password, userName }) {
   return getAllAccounts()
     .then(data => JSON.parse(data))
     .then((users) => {
@@ -39,14 +41,41 @@ function registerUser(email, password) {
           id,
           email,
           password,
-        })).then(() => ({ id, email }));
+          userName,
+        })).then(() => ({ id, email, userName }));
       }
     });
+}
+function writeImage(data, name) {
+  const imgDir = path.resolve('./dist/images/userHead', `${name}.jpg`);
+  fs.writeFile(imgDir, data, (e) => {
+    if (e) {
+      console.log(e);
+    }
+  });
+}
+
+function setImg(id, imgBase64) {
+  return getAllAccounts()
+    .then(data => JSON.parse(data))
+    .then((accounts) => {
+      const target = accounts.find(v => v.id === id);
+      target.hasHeadImg = '1';
+      // writeAllAccounts(accounts).then(() => console.log('ok'));
+      const imgUri = imgBase64.replace(/^data:image\/\w+;base64,/, '');
+      const imgBuffer = new Buffer(imgUri, 'base64');
+      writeAllAccounts(accounts);
+      writeImage(imgBuffer, id);
+      return target;
+    })
+    .then(account => JSON.stringify(account));
 }
 
 // module.exports.getAllThemes = getAllThemes;
 module.exports.loginCheck = loginCheck;
 module.exports.registerUser = registerUser;
+module.exports.setImg = setImg;
+module.exports.getAllAccounts = getAllAccounts;
 // module.exports.fetchPrivateThemes = fetchPrivateThemes;
 // module.exports.save = save;
 // module.exports.deleteTheme = deleteTheme;
