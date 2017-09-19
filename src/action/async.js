@@ -39,10 +39,10 @@ function errorHandler(dispatch, error, type) {
   }
 }
 
-export function registerUser({ email, password }) {
+export function registerUser(registMessage) {
   return (dispatch) => {
-    api.registerUser({ email, password })
-      .then(data => dispatch({ type: ActionTypes.AUTH_USER, payload: data }));
+    api.registerUser(registMessage)
+      .then(() => dispatch({ type: ActionTypes.AUTH_USER, payload: registMessage.userName }));
   };
 }
 
@@ -76,14 +76,14 @@ export function toggleRegist() {
   };
 }
 
-export function add({ title, content, articleType }) {
+export function add({ title, content, type }) {
   if (Cookie.get('sid')) {
     return (dispatch) => {
       api.add({
-        ownerId: Cookie.get('token'),
+        // ownerId: Cookie.get('token'),
         title,
         content,
-        articleType,
+        type,
       }).then(articles => dispatch({
         type: ActionTypes.FETCH_ARTICLES,
         payload: articles,
@@ -184,6 +184,15 @@ export function fetchTopicContent(id) {
     api.fetchTopicContent(id).then(topic => dispatch({
       type: ActionTypes.FETCH_TOPIC_CONTENT,
       payload: topic,
+    }));
+  };
+}
+
+export function setUserHeadImg(imgUri) {
+  return (dispatch) => {
+    api.setUserHeadImg(imgUri).then(account => dispatch({
+      type: ActionTypes.SUBMIT_IMG,
+      payload: account,
     }));
   };
 }
