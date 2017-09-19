@@ -2,6 +2,7 @@
 const path = require('path');
 const uuid = require('uuid');
 const { writeAll, readAll } = require('../utils');
+const account = require('../account');
 
 const topicPath = path.join(__dirname, 'topic.json');
 // const accountPath = path.join(__dirname, 'account.json');
@@ -77,17 +78,17 @@ function upTopic(id) {
     .then(topic => JSON.stringify(topic));
 }
 
-function getCertainTopic(id) {
-  return getAllTopics()
-    .then(data => JSON.parse(data))
-    .then((arr) => {
-      const target = arr.find(v => v.id === id);
-      target.scanNum = Number(target.scanNum) + 1;
-      writeAllTopics(arr);
-      return target;
-    })
-    .then(topic => JSON.stringify(topic));
-}
+// function getCertainTopic(id) {
+//   return getAllTopics()
+//     .then(data => JSON.parse(data))
+//     .then((arr) => {
+//       const target = arr.find(v => v.id === id);
+//       target.scanNum = Number(target.scanNum) + 1;
+//       writeAllTopics(arr);
+//       return target;
+//     })
+//     .then(topic => JSON.stringify(topic));
+// }
 
 function fetchTopicsForHome() {
   return getAllTopics().then(data => JSON.parse(data))
@@ -101,6 +102,42 @@ function fetchTopicsForHome() {
     })
     .then(arr => JSON.stringify(arr));
 }
+
+function getCertainTopic(id) {
+  return getAllTopics()
+    .then(data => JSON.parse(data))
+    .then((arr) => {
+      const target = arr.find(v => v.id === id);
+      target.scanNum = Number(target.scanNum) + 1;
+      writeAllTopics(arr);
+      return account.getAllAccounts()
+        .then(data => JSON.parse(data))
+        .then((accounts) => {
+          // arr.forEach((v) => {
+          target.userName = accounts.find(acc => acc.id === target.userId).userName;
+          // });
+          return target;
+        });
+      // return target;
+    })
+    .then(topic => JSON.stringify(topic));
+}
+
+// function fetchTopicsForHome() {
+//   return getAllTopics().then(data => JSON.parse(data))
+//     .then(arr => account.getAllAccounts()
+//       .then(data => JSON.parse(data))
+//       .then((accounts) => {
+//         arr.forEach((topic) => {
+//           topic.userName = accounts.find(v => v.id === topic.userId).userName;
+//           delete topic.content;
+//           delete topic.ownerId;
+//           delete topic.date;
+//         });
+//         return arr;
+//       }))
+//     .then(arr => JSON.stringify(arr));
+// }
 
 module.exports = {
   getAllTopics,
