@@ -38,13 +38,14 @@ export default class FirstFloor extends React.Component {
   }
   render() {
     const item = this.props.item;
+    const imgSrc = item.imgHead ? `/images/userHead/${item.ownerId}.jpg` : `/images/userHead/${item.userName[0].toUpperCase()}.png`;
     return (
       <div className="floor">
         <h2>{item.title}</h2>
         <section>
-          <img className="user-head-img" src="/images/90.png" alt="" />
+          <img className="user-head-img" src={imgSrc} alt="" />
           <div>
-            <p>用户名<span>{timeDistance(item.date)}</span></p>
+            <p>{item.userName}<span>{timeDistance(item.date)}</span></p>
             <p>{item.content}</p>
           </div>
           <aside className="clearfix">

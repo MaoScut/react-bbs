@@ -26,8 +26,8 @@ export function fetchArticles() {
   return ajax('get', '/fetchAll').then(data => JSON.parse(data));
 }
 
-export function registerUser({ email, password }) {
-  return ajax('post', '/regist', { email, password });
+export function registerUser(registMessage) {
+  return ajax('post', '/regist', registMessage);
 }
 
 export function loginUser({ email, password }) {
@@ -68,4 +68,8 @@ export function upFollow(obj) {
 
 export function fetchTopicContent(id) {
   return ajax('post', '/fetchTopicContent', { id }).then(data => JSON.parse(data));
+}
+
+export function setUserHeadImg(imgUri) {
+  return ajax('post', '/setUserHeadImg', { imgUri }).then(data => JSON.parse(data));
 }

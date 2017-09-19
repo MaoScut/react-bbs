@@ -27,3 +27,5 @@ export const HIDE_EDITOR = 'HIDE_EDOTOR';
 export const UP_TOPIC = 'UP_TOPIC';
 
 export const FETCH_TOPIC_CONTENT = 'FETCH_TOPIC_CONTENT';
+
+export const SUBMIT_IMG = 'SUBMIT_IMG';
