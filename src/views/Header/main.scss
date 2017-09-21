@@ -1,14 +1,26 @@
 .header{
   width: 100%;
-  line-height: 2;
+  line-height: 3;
   // border-bottom: 1px solid gray;
   box-shadow: 0 2px #aaa;
   margin-bottom: 10px;
   .wrap{
     div{
       display: inline-block;
-      vertical-align: middle;
     }
+    .logo-container{
+      line-height: 75px;
+      img{
+        width: 155px;
+        vertical-align: middle;
+        // position: absolute;
+        // float: left;
+        // display: inline;
+        // height: 40px;
+      }
+    }
+    .panel{
+      float: right;
     i{
       vertical-align: middle;
       // float: right;
@@ -16,16 +28,15 @@
       text-align: right;
       margin: auto 5px;
     }
-    img{
-      width: 155px;
-      vertical-align: middle;
-      position: absolute;
-      left: 0;
-      // height: 40px;
-    }
     button{
       height: 28px;
     }
   }
+  }
   
+}
+.clearfix::after{
+  content: '';
+  display: block;
+  clear: both;
 }
