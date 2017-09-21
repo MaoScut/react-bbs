@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 require('./main.scss');
 require('../../style/icon.scss');
-// require('./ionicons.css');
+require('../../style/main.scss');
 
 export default function ({ auth, actions }) {
   const rightContent = auth.auth ?
@@ -25,12 +25,10 @@ export default function ({ auth, actions }) {
     </div>);
   return (
     <header className="header">
-      <div className="clearfix">
-        <div className="logo-container">
-          <Link to="/"><img src="/images/logo.png" alt="logo" /></Link>
-        </div>
-        {rightContent}
+      <div className="logo-container">
+        <Link to="/"><img src="/images/logo.png" alt="logo" /></Link>
       </div>
+      {rightContent}
     </header>
   );
 }
