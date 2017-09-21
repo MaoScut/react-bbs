@@ -64,6 +64,19 @@ function deleteTopic(id) {
     .then(data => JSON.parse(data))
     .then(topics => writeAllTopics(topics.filter(topic => topic.id !== id)));
 }
+// 连接topic和account，返回topic
+function linkAccount() {
+  return getAllTopics().then(data => JSON.parse(data))
+    .then((topics) => {
+      return account.getAllAccounts().then(data => JSON.parse(data))
+        .then((accounts) => {
+          topics.forEach((topic) => {
+            topic.userName = accounts.find(acc => acc.id === topic.userId).userName;
+          });
+          return topics;
+        });
+    });
+}
 
 function upTopic(id) {
   return getAllTopics()
@@ -72,8 +85,9 @@ function upTopic(id) {
       const targetTopic = arr.find(v => v.id === id);
       targetTopic.upNum = Number(targetTopic.upNum) + 1;
       // 之后请加上错误处理！
-      writeAllTopics(arr).then(() => console.log('success'));
-      return targetTopic;
+      return writeAllTopics(arr)
+        .then(() => linkAccount().then(topics => topics.find(topic => topic.id === id)));
+      // return targetTopic;
     })
     .then(topic => JSON.stringify(topic));
 }
@@ -121,6 +135,20 @@ function getCertainTopic(id) {
       // return target;
     })
     .then(topic => JSON.stringify(topic));
+}
+
+// 连接topic和account，返回topic
+function linkAccount() {
+  return getAllTopics().then(data => JSON.parse(data))
+    .then((topics) => {
+      return account.getAllAccounts().then(data => JSON.parse(data))
+        .then((accounts) => {
+          topics.forEach((topic) => {
+            topic.userName = accounts.find(acc => acc.id === topic.userId).userName;
+          });
+          return topics;
+        })
+    });
 }
 
 // function fetchTopicsForHome() {
