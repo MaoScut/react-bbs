@@ -86,8 +86,8 @@ app.post('/login', (req, res) => {
     //   if (err) console.log(err);
     //   else console.log('save session');
     // });
-    res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, [`email=${acc.email}`], [`userId=${acc.id}`]]);
-    res.end();
+    res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, `email=${acc.email}`, `userId=${acc.id}`, `userName=${acc.userName}`]);
+    res.end(acc.userName);
   });
 });
 app.post('/regist', (req, res) => {

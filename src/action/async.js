@@ -48,8 +48,8 @@ export function registerUser(registMessage) {
 
 export function loginUser({ email, password }) {
   return (dispatch) => {
-    api.loginUser({ email, password }).then(() => {
-      dispatch({ type: ActionTypes.AUTH_USER, payload: email });
+    api.loginUser({ email, password }).then((userName) => {
+      dispatch({ type: ActionTypes.AUTH_USER, payload: userName });
       history.push('/');
     });
   };
