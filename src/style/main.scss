@@ -1,0 +1,11 @@
+// 所有页面都要用的样式
+// 由于header一直有render，所以由header引入
+html,body{
+  padding: 0;
+  margin: 0;
+  // react render的根节点
+  .wrap{
+    width: 1110px;
+    margin: 0 auto;
+  }
+}

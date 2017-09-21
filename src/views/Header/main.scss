@@ -1,38 +1,37 @@
 .header{
-  width: 100%;
+  // width: 100%;
   line-height: 3;
   // border-bottom: 1px solid gray;
   box-shadow: 0 2px #aaa;
   margin-bottom: 10px;
-  .wrap{
-    div{
-      display: inline-block;
-    }
-    .logo-container{
-      line-height: 75px;
-      img{
-        width: 155px;
-        vertical-align: middle;
-        // position: absolute;
-        // float: left;
-        // display: inline;
-        // height: 40px;
-      }
-    }
-    .panel{
-      float: right;
-    i{
+  div{
+    display: inline-block;
+  }
+  .logo-container{
+    line-height: 75px;
+    img{
+      width: 155px;
       vertical-align: middle;
-      // float: right;
-      font-size: 25px;
-      text-align: right;
-      margin: auto 5px;
-    }
-    button{
-      height: 28px;
+      // position: absolute;
+      // float: left;
+      // display: inline;
+      // height: 40px;
     }
   }
+  .panel{
+    float: right;
+  i{
+    vertical-align: middle;
+    // float: right;
+    font-size: 25px;
+    text-align: right;
+    margin: auto 5px;
   }
+  button{
+    height: 28px;
+  }
+}
+  
   
 }
 .clearfix::after{

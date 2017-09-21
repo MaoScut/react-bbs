@@ -24,13 +24,13 @@ export default function ({ auth, actions }) {
       <div><button>more</button></div> */}
     </div>);
   return (
-    <div className="header">
-      <div className="wrap clearfix">
+    <header className="header">
+      <div className="clearfix">
         <div className="logo-container">
           <Link to="/"><img src="/images/logo.png" alt="logo" /></Link>
         </div>
         {rightContent}
       </div>
-    </div>
+    </header>
   );
 }

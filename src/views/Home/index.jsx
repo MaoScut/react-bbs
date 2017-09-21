@@ -15,13 +15,11 @@ export default class Home extends React.Component {
   }
   render() {
     return (
-      <div>
-        <div className="wrap">
-          <div className="create-button-container">
-            <button onClick={this.props.actions.showEditor}>+ 发新主题</button>
-          </div>
-          <List items={this.props.topics} />
+      <section>
+        <div className="create-button-container">
+          <button onClick={this.props.actions.showEditor}>+ 发新主题</button>
         </div>
+        <List items={this.props.topics} />
         {this.props.auth.login ?
           <LoginPop
             onSubmit={this.props.actions.loginUser}
@@ -41,7 +39,7 @@ export default class Home extends React.Component {
             onCancel={this.props.actions.cancelEdit}
           />
           : null}
-      </div>
+      </section>
     );
   }
 }
