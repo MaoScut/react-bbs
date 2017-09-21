@@ -25,27 +25,38 @@ export default class Login extends React.Component {
     return (
       <div>
         <div className="grey-cover" />
-        <div className="over-cover">
-          email:<input
-            type="text"
-            ref={(input) => {
-              this.emailInput = input;
-            }}
-            onChange={this.saveEmail}
-          />
-          passoword:<input
-            type="password"
-            ref={(input) => {
-              this.passwordInput = input;
-            }}
-            onChange={this.savePassword}
-          />
-          <button onClick={() => this.props.onSubmit({
-            email: this.state.email,
-            password: this.state.password,
-          })}
-          >login</button>
-          <button onClick={() => this.props.onCancel()}>cancel</button>
+        <div className="login">
+          <div className="head"><span>登录</span></div>
+          <div className="input-container">
+            <div>
+              <input
+                type="text"
+                ref={(input) => {
+                  this.emailInput = input;
+                }}
+                onChange={this.saveEmail}
+              />
+              <span>email: &nbsp;</span>
+            </div>
+            <div>
+              <input
+                type="password"
+                ref={(input) => {
+                  this.passwordInput = input;
+                }}
+                onChange={this.savePassword}
+              />
+              <span>passoword:&nbsp;</span>
+            </div>
+          </div>
+          <div className="btn-container">
+            <button onClick={() => this.props.onSubmit({
+              email: this.state.email,
+              password: this.state.password,
+            })}
+            >登录</button>
+            <button onClick={() => this.props.onCancel()}>取消</button>
+          </div>
         </div>
       </div>
     );

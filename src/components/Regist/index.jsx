@@ -32,35 +32,49 @@ export default class Regist extends React.Component {
     return (
       <div>
         <div className="grey-cover" />
-        <div className="over-cover">
-          email:<input
-            type="text"
-            ref={(input) => {
-              this.emailInput = input;
-            }}
-            onChange={this.saveEmail}
-          />
-          userName:<input
-            type="text"
-            ref={(input) => {
-              this.userNameInput = input;
-            }}
-            onChange={this.saveUserName}
-          />
-          passoword:<input
-            type="password"
-            ref={(input) => {
-              this.passwordInput = input;
-            }}
-            onChange={this.savePassword}
-          />
-          <button onClick={() => this.props.onSubmit({
-            email: this.state.email,
-            password: this.state.password,
-            userName: this.state.userName,
-          })}
-          >regist</button>
-          <button onClick={() => this.props.onCancel()}>cancel</button>
+        <div className="login">
+          <div className="head"><span>注册</span></div>
+          <div className="input-container">
+            <div>
+              <input
+                type="text"
+                ref={(input) => {
+                  this.emailInput = input;
+                }}
+                onChange={this.saveEmail}
+              />
+              <span>email: &nbsp;</span>
+            </div>
+            <div>
+              <input
+                type="text"
+                ref={(input) => {
+                  this.userNameInput = input;
+                }}
+                onChange={this.saveUserName}
+              />
+              <span>用户名: &nbsp;</span>
+            </div>
+            <div>
+              <input
+                type="password"
+                ref={(input) => {
+                  this.passwordInput = input;
+                }}
+                onChange={this.savePassword}
+              />
+              <span>密码:&nbsp;</span>
+            </div>
+            <div className="btn-container">
+              <button onClick={() => this.props.onSubmit({
+                email: this.state.email,
+                password: this.state.password,
+                userName: this.state.userName,
+              })}
+              >注册</button>
+              <button onClick={() => this.props.onCancel()}>取消</button>
+            </div>
+          </div>
         </div>
       </div>
     );
