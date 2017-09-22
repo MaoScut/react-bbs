@@ -11,6 +11,18 @@ export default handleActions({
     return { ...state, follows: action.payload };
   },
   [ActionTypes.FETCH_TOPIC_CONTENT](state, action) {
+    const stateCopy = { ...state };
+    stateCopy.topic.content = action.payload.content;
+    return stateCopy;
+  },
+  [ActionTypes.FETCH_TOPIC](state, action) {
     return { ...state, topic: action.payload };
+  },
+  [ActionTypes.ENTER_TOPIC](state, action) {
+    return {
+      // ...state,
+      topic: action.payload,
+      follows: null,
+    };
   },
 }, initialState);
