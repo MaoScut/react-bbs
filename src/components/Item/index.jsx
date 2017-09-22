@@ -19,7 +19,8 @@ export default function Item({ item }) {
   };
   return (
     <tr>
-      <td><Link to={`/detail/${item.id}`}>{item.title}</Link></td>
+      {/* <td><Link to={`/detail/${item.id}`}>{item.title}</Link></td> */}
+      <td><a href={`/detail/${item.id}`} id={item.id}>{item.title}</a></td>
       {/* <td>{item.title}</td> */}
       <td><span style={styleObj}>{item.type}</span></td>
       <td><span>{item.replyNum}</span></td>
