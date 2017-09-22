@@ -104,18 +104,18 @@ function upTopic(id) {
 //     .then(topic => JSON.stringify(topic));
 // }
 
-function fetchTopicsForHome() {
-  return getAllTopics().then(data => JSON.parse(data))
-    .then((arr) => {
-      arr.forEach((topic) => {
-        delete topic.content;
-        delete topic.ownerId;
-        delete topic.date;
-      });
-      return arr;
-    })
-    .then(arr => JSON.stringify(arr));
-}
+// function fetchTopicsForHome() {
+//   return getAllTopics().then(data => JSON.parse(data))
+//     .then((arr) => {
+//       arr.forEach((topic) => {
+//         delete topic.content;
+//         delete topic.ownerId;
+//         delete topic.date;
+//       });
+//       return arr;
+//     })
+//     .then(arr => JSON.stringify(arr));
+// }
 
 function getCertainTopic(id) {
   return getAllTopics()
@@ -137,6 +137,15 @@ function getCertainTopic(id) {
     .then(topic => JSON.stringify(topic));
 }
 
+function getCertainTopicContent(id) {
+  return getAllTopics().then(data => JSON.parse(data))
+    .then(topics => topics.find(t => t.id === id))
+    .then(topic => topic.content)
+    .then(content => JSON.stringify({
+      content,
+    }));
+}
+
 // 连接topic和account，返回topic
 function linkAccount() {
   return getAllTopics().then(data => JSON.parse(data))
@@ -147,25 +156,25 @@ function linkAccount() {
             topic.userName = accounts.find(acc => acc.id === topic.userId).userName;
           });
           return topics;
-        })
+        });
     });
 }
 
-// function fetchTopicsForHome() {
-//   return getAllTopics().then(data => JSON.parse(data))
-//     .then(arr => account.getAllAccounts()
-//       .then(data => JSON.parse(data))
-//       .then((accounts) => {
-//         arr.forEach((topic) => {
-//           topic.userName = accounts.find(v => v.id === topic.userId).userName;
-//           delete topic.content;
-//           delete topic.ownerId;
-//           delete topic.date;
-//         });
-//         return arr;
-//       }))
-//     .then(arr => JSON.stringify(arr));
-// }
+function fetchTopicsForHome() {
+  return getAllTopics().then(data => JSON.parse(data))
+    .then(arr => account.getAllAccounts()
+      .then(data => JSON.parse(data))
+      .then((accounts) => {
+        arr.forEach((topic) => {
+          topic.userName = accounts.find(v => v.id === topic.userId).userName;
+          delete topic.content;
+          delete topic.ownerId;
+          // delete topic.date;
+        });
+        return arr;
+      }))
+    .then(arr => JSON.stringify(arr));
+}
 
 module.exports = {
   getAllTopics,
@@ -176,4 +185,5 @@ module.exports = {
   getCertainTopic,
   writeAllTopics,
   fetchTopicsForHome,
+  getCertainTopicContent,
 };

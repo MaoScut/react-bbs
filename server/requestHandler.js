@@ -94,6 +94,9 @@ function fetchTopic(req, res) {
   // 返回的json数据要有如下属性
   topicdb.getCertainTopic(req.body.id).then(data => res.end(data));
 }
+function fetchTopicContent(req, res) {
+  topicdb.getCertainTopicContent(req.body.id).then(data => res.end(data));
+}
 
 function setUserHeadImg(req, res) {
   // 上传用户头像
@@ -112,4 +115,5 @@ module.exports = {
   upFollow,
   fetchTopic,
   setUserHeadImg,
+  fetchTopicContent,
 };

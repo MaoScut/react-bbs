@@ -84,8 +84,11 @@ app.post('/upTopic', (req, res) => {
 app.post('/upFollow', (req, res) => {
   requestHandler.upFollow(req, res);
 });
-app.post('/fetchTopicContent', (req, res) => {
+app.post('/fetchTopic', (req, res) => {
   requestHandler.fetchTopic(req, res);
+});
+app.post('/fetchTopicContent', (req, res) => {
+  requestHandler.fetchTopicContent(req, res);
 });
 app.post('/setUserHeadImg', (req, res) => {
   requestHandler.setUserHeadImg(req, res);
