@@ -1,19 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Item from '../Item';
+import Loading from '../Loading';
+import history from '../../history';
 
-export default function List({ items, onDelete }) {
+export default function List({ items, onEnter }) {
   if (!items) {
     return (
-      <div>
-        loading...
-      </div>
+      <table role="presentation">
+        <tr>
+          <td>主题</td>
+          <td>分类</td>
+          <td>回复</td>
+          <td>浏览</td>
+          <td>活动</td>
+        </tr>
+        <tr>
+          <td colSpan="5"><Loading /></td>
+        </tr>
+      </table>
     );
   }
   function catchBubble(e) {
-    if (e.target.className === 'delete-btn') {
-      if (onDelete) onDelete(e.target.value);
+    if (e.target.tagName === 'A') {
+      e.preventDefault();
+      if (onEnter) {
+        const id = e.target.id;
+        const topicObj = items.find(v => v.id === id);
+        onEnter(topicObj);
+        // 接收完数据后再改变url，然而不知道上一句是不是同步的，是异步的话就有问题了
+        history.push(`/detail/${id}`);
+        // return true;
+      }
     }
+    // return false;
   }
   const list = items.map(topic => <Item key={topic.id} item={topic} />);
   return (
@@ -63,6 +83,6 @@ List.propTypes = {
     replyNum: PropTypes.string,
     userName: PropTypes.string,
   })).isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onEnter: PropTypes.func.isRequired,
 };
 
