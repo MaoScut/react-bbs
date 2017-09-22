@@ -6,7 +6,7 @@ import Home from './Home';
 import Header from './Header';
 // import { LoginPop } from './Pop';
 // import Regist from './Regist';
-// import Error from './Error';
+import Error from './Error';
 // import PrivateArticles from './PrivateArticles';
 import Detail from './Detail';
 import Private from './Private';
@@ -45,10 +45,10 @@ const CPrivate = connect(
 //   mapDispatchToProps,
 // )(Regist);
 
-// const CError = connect(
-//   state => state,
-//   mapDispatchToProps,
-// )(Error);
+const CError = connect(
+  state => state,
+  mapDispatchToProps,
+)(Error);
 
 // const CPrivateArticles = connect(
 //   state => state,
@@ -65,7 +65,7 @@ export {
   CHome as Home,
   // CLogin as Login,
   // CRegist as Regist,
-  // CError as Error,
+  CError as Error,
   // CPrivateArticles as PrivateArticles,
   CDetail as Detail,
   CPrivate as Private,

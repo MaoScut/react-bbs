@@ -48,10 +48,16 @@ export function registerUser(registMessage) {
 
 export function loginUser({ email, password }) {
   return (dispatch) => {
-    api.loginUser({ email, password }).then((userName) => {
-      dispatch({ type: ActionTypes.AUTH_USER, payload: userName });
-      history.push('/');
-    });
+    api.loginUser({ email, password }).then((result) => {
+      if (result.err) {
+        dispatch({ type: ActionTypes.AUTH_ERROR, payload: result.err });
+      } else {
+        dispatch({ type: ActionTypes.AUTH_USER, payload: result.acc.userName });
+      }
+    })
+      .catch((result) => {
+        dispatch({ type: ActionTypes.AUTH_ERROR, payload: result.err });
+      });
   };
 }
 

@@ -13,7 +13,15 @@ function ajax(method, url, data) {
     xhr.onreadystatechange = function h() {
       if (xhr.status === 200 && xhr.readyState === 4) {
         resolve(xhr.responseText);
-      } else if (xhr.status >= 400) reject(xhr.responseText);
+      } else if (xhr.status >= 400 && xhr.status < 500 && xhr.readyState === 4) {
+        reject(xhr.responseText);
+      } else if (xhr.readyState === 4) {
+        reject({
+          err: {
+            message: '服务器错误！',
+          },
+        });
+      }
     };
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('content-type', 'application/json');
@@ -31,7 +39,7 @@ export function registerUser(registMessage) {
 }
 
 export function loginUser({ email, password }) {
-  return ajax('post', '/login', { email, password });
+  return ajax('post', '/login', { email, password }).then(result => JSON.parse(result));
 }
 
 export function save(article) {

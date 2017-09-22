@@ -2,7 +2,7 @@ const path = require('path');
 const uuid = require('uuid');
 const fs = require('fs');
 const follow = require('../follow');
-const { writeAll, readAll } = require('../utils');
+const { writeAll, readAll, createError } = require('../utils');
 
 // const themesPath = path.join(__dirname, 'themes.json');
 const accountPath = path.join(__dirname, 'account.json');
@@ -23,9 +23,12 @@ function loginCheck(email, password) {
     .then((accounts) => {
       const acc = accounts.find(v => v.email === email && v.password === password);
       if (!acc) {
-        throw Error('用户不存在');
+        // throw Error('用户不存在');
+        return {
+          err: createError('用户名不存在或者用户名和密码不匹配！'),
+        };
       }
-      return acc;
+      return { acc };
     });
 }
 // 注册成功，返回id和邮箱，失败就抛出异常

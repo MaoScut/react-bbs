@@ -4,7 +4,7 @@ import { Router, Route } from 'react-router-dom';
 // import Editor from '../components/Editor';
 // import { Home, Header, Error, PrivateArticles, Login, Detail } from '../components/Connected';
 // import { Header } from '../components/Connected';
-import { Home, Detail, Header, Private } from '../views/Connected';
+import { Home, Detail, Header, Private, Error } from '../views/Connected';
 // import RequireAuth from '../components/RequireAuth';
 import history from '../history';
 
@@ -18,6 +18,7 @@ export default () => (
       {/* <Route exact path="/login" component={Login} /> */}
       <Route path="/detail/:articleId" component={Detail} />
       <Route path="/private" component={Private} />
+      <Route path="/" component={Error} />
       {/* <Route path="/editor/:articleId" component={Editor} /> */}
       {/* <Route exact path="/private" component={RequireAuth(PrivateArticles)} /> */}
     </div>

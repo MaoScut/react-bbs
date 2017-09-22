@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function Error({ error }) {
   return (
     <div>
-      {error}
+      {error ? error.message : null}
     </div>
   );
 }
