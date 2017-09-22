@@ -15,6 +15,8 @@ const serveStatic = require('serve-static');
 const account = require('./data/account');
 const topicdb = require('./data/topic');
 const follow = require('./data/follow');
+const utils = require('./data/utils');
+const requestHandler = require('./requestHandler');
 // const sessionStore = require('./server/sessionStore').store;
 
 const app = new Express();
@@ -32,19 +34,6 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 app.use(serveStatic(path.resolve('./dist')));
 app.use(cookieParser());
-// app.use((req, res, next) => {
-//   // console.log(next);
-//   if (req.originalUrl === '/login') req.headers.accept = 'text/html';
-//   if (!req.cookies.userId) {
-//     if (req.originalUrl === '/login') {
-//       next();
-//     } else {
-//       res.status(301);
-//       res.location('/login');
-//       res.end();
-//     }
-//   }
-// });
 app.use(history({
   index: '/index.html',
   // disableDotRule: true,
@@ -68,69 +57,38 @@ app.use(session({
   cookie: { maxAge: 60000 },
 }));
 
+// get请求
 app.get('/fetchAll', (req, res) => {
-  topicdb.fetchTopicsForHome().then(data => res.end(data));
-});
-app.get('/fetchPrivate', (req, res) => {
-  topicdb.fetchPrivateTopics(req.cookies.userId).then(data => res.end(data));
+  requestHandler.fetchAll(req, res);
 });
 app.get('/fetchFollows', (req, res) => {
-  const id = req.query.id;
-  follow.getCertainFollows(id).then(data => res.end(data));
+  requestHandler.fetchFollows(req, res);
 });
+
+// post请求
 app.post('/login', (req, res) => {
-  account.loginCheck(req.body.email, req.body.password).then((acc) => {
-    // req.session.userId = acc.id;
-    // req.session.email = acc.email;
-    // req.session.save((err) => {
-    //   if (err) console.log(err);
-    //   else console.log('save session');
-    // });
-    res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, `email=${acc.email}`, `userId=${acc.id}`, `userName=${acc.userName}`]);
-    res.end(acc.userName);
-  });
+  requestHandler.login(req, res);
 });
 app.post('/regist', (req, res) => {
-  account.registerUser(req.body).then((acc) => {
-    // req.session.email = acc.email;
-    // req.session.userId = acc.id;
-    // req.session.save((err) => {
-    //   if (err) console.log(err);
-    //   else console.log('save session');
-    // });
-    res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, `email=${acc.email}`, `userId=${acc.id}`, `userName=${acc.userName}`]);
-    res.end();
-  });
+  requestHandler.regist(req, res);
 });
 app.post('/save', (req, res) => {
-  req.body.userId = req.cookies.userId;
-  topicdb.save(req.body).then(() => res.end());
+  requestHandler.save(req, res);
 });
-app.post('/deleteArticle', (req, res) => {
-  topicdb.deleteTopic(req.body.articleId).then(() => res.end());
-});
-
 app.post('/follow', (req, res) => {
-  const followObj = req.body;
-  followObj.userId = req.cookies.userId;
-  follow.add(followObj).then(() => res.end());
+  requestHandler.addFollow(req, res);
 });
-
 app.post('/upTopic', (req, res) => {
-  topicdb.upTopic(req.body.id).then(data => res.end(data));
+  requestHandler.upTopic(req, res);
 });
-
 app.post('/upFollow', (req, res) => {
-  follow.upFollow(req.body.followId).then(data => res.end(data));
+  requestHandler.upFollow(req, res);
 });
-
 app.post('/fetchTopicContent', (req, res) => {
-  topicdb.getCertainTopic(req.body.id).then(data => res.end(data));
+  requestHandler.fetchTopic(req, res);
 });
-
 app.post('/setUserHeadImg', (req, res) => {
-  const id = req.cookies.userId;
-  account.setImg(id, req.body.imgUri).then(data => res.end(data));
+  requestHandler.setUserHeadImg(req, res);
 });
 
 app.listen(port, (error) => {
