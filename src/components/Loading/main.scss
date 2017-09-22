@@ -1,0 +1,32 @@
+.loading-container{
+  text-align: center;
+  height: 70px;
+  width: 100%;
+  position: relative;
+  .loading{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: auto;  
+    position: absolute;  
+    top: 0; left: 0; bottom: 0; right: 0;
+    border: 3px solid steelblue;
+    animation: breathe 1s ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes breathe{
+    0%{
+      transform: scale(1.3);
+    }
+    20%{
+      transform: scale(1);
+    }
+    40%{
+      transform: scale(1.5);
+    }
+    60%{
+      transform: scale(1);
+    }
+  }
+}

@@ -19,7 +19,7 @@ export default class Home extends React.Component {
         <div className="create-button-container">
           <button onClick={this.props.actions.showEditor}>+ 发新主题</button>
         </div>
-        <List items={this.props.topics} />
+        <List items={this.props.topics} onEnter={this.props.actions.enterTopic} />
         {this.props.auth.login ?
           <LoginPop
             onSubmit={this.props.actions.loginUser}

@@ -77,6 +77,9 @@ export function upFollow(obj) {
 export function fetchTopicContent(id) {
   return ajax('post', '/fetchTopicContent', { id }).then(data => JSON.parse(data));
 }
+export function fetchTopic(id) {
+  return ajax('post', '/fetchTopic', { id }).then(data => JSON.parse(data));
+}
 
 export function setUserHeadImg(imgUri) {
   return ajax('post', '/setUserHeadImg', { imgUri }).then(data => JSON.parse(data));

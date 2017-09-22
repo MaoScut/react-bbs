@@ -12,7 +12,6 @@
   z-index: 100;
   position: absolute;
 }
-
 table{
   border-collapse: collapse;
   width: 100%;
@@ -23,9 +22,18 @@ tr{
   td a{
     color: black;
     text-decoration: none;
+    &:visited {
+      color: gray;
+    }
+    &:hover{
+      color: red;
+    }
   }
-  td a:visited{
-    color: gray;
+  td{
+    &:first-child{
+      width: 60%;
+    }
+    width: 10%;
   }
 }
 tr:first-child{

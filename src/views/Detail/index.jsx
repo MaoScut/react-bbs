@@ -3,6 +3,7 @@ import Floor from '../../components/Floor';
 import FirstFloor from '../../components/FirstFloor';
 // import FirstFloor from '../../components/Floor';
 import ReplyPop from '../../components/ReplyPop';
+import Loading from '../../components/Loading';
 import '../../style/icon.scss';
 import './main.scss';
 
@@ -13,7 +14,13 @@ export default class Detail extends React.Component {
     this.upClick = this.upClick.bind(this);
   }
   componentDidMount() {
-    this.props.actions.fetchTopicContent(this.props.match.params.articleId);
+    if (this.props.detail.topic) {
+    // 有topic，说明是从主页过来的，只要content就好      
+      this.props.actions.fetchTopicContent(this.props.match.params.articleId);
+    } else {
+      // 无topic，直接从地址栏过来，那么要获取整个topic
+      this.props.actions.fetchTopic(this.props.match.params.articleId);
+    }
     this.props.actions.fetchCertainFollows(this.props.match.params.articleId);
   }
   handleClick() {
@@ -27,15 +34,9 @@ export default class Detail extends React.Component {
     });
     return false;
   }
-  shareClick() {
-    alert('none');
-  }
-  replyClick() {
-
-  }
   render() {
-    let topic = 'loading';
-    let follows = 'loading';
+    let topic = <Loading />;
+    let follows = <Loading />;
     if (this.props.detail.topic !== null) {
       topic = <FirstFloor upAction={this.props.actions.upTopic} item={this.props.detail.topic} />;
     }

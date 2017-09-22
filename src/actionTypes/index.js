@@ -27,5 +27,8 @@ export const HIDE_EDITOR = 'HIDE_EDOTOR';
 export const UP_TOPIC = 'UP_TOPIC';
 
 export const FETCH_TOPIC_CONTENT = 'FETCH_TOPIC_CONTENT';
+export const FETCH_TOPIC = 'FETCH_TOPIC';
 
 export const SUBMIT_IMG = 'SUBMIT_IMG';
+
+export const ENTER_TOPIC = 'ENTER-TOPIC';

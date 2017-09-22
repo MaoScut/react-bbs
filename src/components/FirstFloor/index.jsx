@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import './main.scss';
 import { timeDistance } from '../../utils';
+import Loading from '../Loading';
 
 // export default function FirstFloor({ item, upAction }) {
 //   function upClick() {
@@ -46,7 +47,7 @@ export default class FirstFloor extends React.Component {
           <img className="user-head-img" src={imgSrc} alt="" />
           <div>
             <p>{item.userName}<span>{timeDistance(item.date)}</span></p>
-            <p>{item.content}</p>
+            {item.content ? (<p>{item.content}</p>) : (<Loading />)}
           </div>
           <aside className="clearfix">
             {item.upNum}

@@ -170,7 +170,7 @@ export function submitReply(follow) {
 export function upTopic(id) {
   return (dispatch) => {
     api.upTopic(id).then(topic => dispatch({
-      type: ActionTypes.FETCH_TOPIC_CONTENT,
+      type: ActionTypes.FETCH_TOPIC,
       payload: topic,
     }));
   };
@@ -194,11 +194,27 @@ export function fetchTopicContent(id) {
   };
 }
 
+export function fetchTopic(id) {
+  return (dispatch) => {
+    api.fetchTopic(id).then(topic => dispatch({
+      type: ActionTypes.FETCH_TOPIC,
+      payload: topic,
+    }));
+  };
+}
+
 export function setUserHeadImg(imgUri) {
   return (dispatch) => {
     api.setUserHeadImg(imgUri).then(account => dispatch({
       type: ActionTypes.SUBMIT_IMG,
       payload: account,
     }));
+  };
+}
+
+export function enterTopic(topicObj) {
+  return {
+    type: ActionTypes.ENTER_TOPIC,
+    payload: topicObj,
   };
 }
