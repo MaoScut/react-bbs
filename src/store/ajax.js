@@ -11,16 +11,18 @@ function ajax(method, url, data) {
     }
     xhr.open(method, url);
     xhr.onreadystatechange = function h() {
-      if (xhr.status === 200 && xhr.readyState === 4) {
-        resolve(xhr.responseText);
-      } else if (xhr.status >= 400 && xhr.status < 500 && xhr.readyState === 4) {
-        reject(xhr.responseText);
-      } else if (xhr.readyState === 4) {
-        reject({
-          err: {
-            message: '服务器错误！',
-          },
-        });
+      if (xhr.readyState === 4) {
+        if (xhr.status === 304 || (xhr.status >= 200 && xhr.status < 300)) {
+          resolve(xhr.responseText);
+        } else if (xhr.status >= 400 && xhr.status < 500) {
+          reject(xhr.responseText);
+        } else {
+          reject(JSON.stringify({
+            err: {
+              message: '服务器错误，请稍后重试',
+            },
+          }));
+        }
       }
     };
     xhr.setRequestHeader('Accept', 'application/json');
@@ -35,7 +37,7 @@ export function fetchArticles() {
 }
 
 export function registerUser(registMessage) {
-  return ajax('post', '/regist', registMessage);
+  return ajax('post', '/regist', registMessage).then(data => JSON.parse(data));
 }
 
 export function loginUser({ email, password }) {
