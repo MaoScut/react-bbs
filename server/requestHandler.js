@@ -10,17 +10,25 @@ const utils = require('./data/utils');
 // }
 function login(req, res) {
   account.loginCheck(req.body.email, req.body.password).then((result) => {
-    if (result.acc) {
-      const acc = result.acc;
-      res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, `email=${acc.email}`, `userId=${acc.id}`, `userName=${acc.userName}`]);
-      // acc就剩下userName了
-      result.acc = utils.cutObj(result.acc, ['userName']);
+    const acc = result.acc;
+    if (result.err) {
       res.end(JSON.stringify(result));
     } else {
+      res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, `email=${acc.email}`, `userId=${acc.id}`, `userName=${acc.userName}`]);
+      // acc就剩下userName了
+      result.acc = utils.cutObj(acc, ['userName']);
       res.end(JSON.stringify(result));
     }
   })
     .catch((err) => {
+      // if (err.isClientErr) {
+      //   res.status(401);
+      //   res.end(JSON.stringify(err));
+      // } else {
+      //   console.log(err);
+      //   res.status(500);
+      //   res.end();
+      // }
       console.log(err);
       res.status(500);
       res.end();
@@ -56,9 +64,14 @@ function regist(req, res) {
   // 新用户注册
   // 必须传入一个obj，含有用户名，密码，邮箱
   // 暂时没返回数据，到时候应该要改
-  account.registerUser(req.body).then((acc) => {
-    res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, `email=${acc.email}`, `userId=${acc.id}`, `userName=${acc.userName}`]);
-    res.end();
+  account.registerUser(req.body).then((result) => {
+    if (result.err) {
+      res.end(JSON.stringify(result));
+    } else {
+      const acc = result.acc;
+      res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, `email=${acc.email}`, `userId=${acc.id}`, `userName=${acc.userName}`]);
+      res.end(JSON.stringify(result));
+    }
   });
 }
 
