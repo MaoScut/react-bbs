@@ -31,4 +31,6 @@ export const FETCH_TOPIC = 'FETCH_TOPIC';
 
 export const SUBMIT_IMG = 'SUBMIT_IMG';
 
-export const ENTER_TOPIC = 'ENTER-TOPIC';
+export const ENTER_TOPIC = 'ENTER_TOPIC';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const REGIST_FAIL = 'REGIST_FAIL';
