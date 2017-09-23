@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import Login from '../Login';
 import Regist from '../Regist';
 
-export function LoginPop({ onSubmit, onCancel }) {
+export function LoginPop({ onSubmit, onCancel, err }) {
   return (
     <div>
-      <Login onSubmit={onSubmit} onCancel={onCancel} />
+      <Login onSubmit={onSubmit} onCancel={onCancel} err={err} />
     </div>
   );
 }
 
-export function RegistPop({ onSubmit, onCancel }) {
+export function RegistPop({ onSubmit, onCancel, err }) {
   return (
     <div>
-      <Regist onSubmit={onSubmit} onCancel={onCancel} />
+      <Regist onSubmit={onSubmit} onCancel={onCancel} err={err} />
     </div>
   );
 }

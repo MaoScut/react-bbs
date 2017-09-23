@@ -24,12 +24,14 @@ export default class Home extends React.Component {
           <LoginPop
             onSubmit={this.props.actions.loginUser}
             onCancel={this.props.actions.toggleLogin}
+            err={this.props.error.loginErr}
           />
           : null}
         {this.props.auth.regist ?
           <RegistPop
             onSubmit={this.props.actions.registerUser}
             onCancel={this.props.actions.toggleRegist}
+            err={this.props.error.registErr}
           />
           : null}
         {this.props.editor.create ?

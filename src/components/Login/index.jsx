@@ -7,9 +7,15 @@ export default class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
+      err: this.props.err,
     };
     this.saveEmail = this.saveEmail.bind(this);
     this.savePassword = this.savePassword.bind(this);
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      err: nextProps.err,
+    });
   }
   saveEmail() {
     this.setState({
@@ -28,6 +34,7 @@ export default class Login extends React.Component {
         <div className="login">
           <div className="head"><span>登录</span></div>
           <div className="input-container">
+            {this.props.err ? (<div><span>{this.props.err.message}</span></div>) : null}
             <div>
               <input
                 type="text"

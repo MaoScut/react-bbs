@@ -8,10 +8,16 @@ export default class Regist extends React.Component {
       email: '',
       password: '',
       userName: '',
+      err: this.props.err,
     };
     this.saveEmail = this.saveEmail.bind(this);
     this.savePassword = this.savePassword.bind(this);
     this.saveUserName = this.saveUserName.bind(this);
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      err: nextProps.err,
+    });
   }
   saveEmail() {
     this.setState({
@@ -35,6 +41,7 @@ export default class Regist extends React.Component {
         <div className="login">
           <div className="head"><span>注册</span></div>
           <div className="input-container">
+            {this.props.err ? (<div><span>{this.props.err.message}</span></div>) : null}
             <div>
               <input
                 type="text"
