@@ -42,7 +42,13 @@ function errorHandler(dispatch, error, type) {
 export function registerUser(registMessage) {
   return (dispatch) => {
     api.registerUser(registMessage)
-      .then(() => dispatch({ type: ActionTypes.AUTH_USER, payload: registMessage.userName }));
+      .then((result) => {
+        if (result.err) {
+          dispatch({ type: ActionTypes.REGIST_FAIL, payload: result.err });
+        } else {
+          dispatch({ type: ActionTypes.AUTH_USER, payload: registMessage.userName });
+        }
+      });
   };
 }
 
@@ -50,13 +56,13 @@ export function loginUser({ email, password }) {
   return (dispatch) => {
     api.loginUser({ email, password }).then((result) => {
       if (result.err) {
-        dispatch({ type: ActionTypes.AUTH_ERROR, payload: result.err });
+        dispatch({ type: ActionTypes.LOGIN_FAIL, payload: result.err });
       } else {
         dispatch({ type: ActionTypes.AUTH_USER, payload: result.acc.userName });
       }
     })
-      .catch((result) => {
-        dispatch({ type: ActionTypes.AUTH_ERROR, payload: result.err });
+      .catch((err) => {
+        dispatch({ type: ActionTypes.AUTH_ERROR, payload: JSON.parse(err) });
       });
   };
 }
