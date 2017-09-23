@@ -48,14 +48,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(serveStatic(path.resolve('./dist')));
 
-app.use(session({
-  // store: new FileStore(),
-  // store: new RedisStore(),
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: false,
-  cookie: { maxAge: 60000 },
-}));
+// app.use(session({
+//   // store: new FileStore(),
+//   // store: new RedisStore(),
+//   secret: 'keyboard cat',
+//   resave: true,
+//   saveUninitialized: false,
+//   cookie: { maxAge: 60000 },
+// }));
+app.use((req, res, next) => {
+  if (req.method === 'POST' && req.url !== '/login') {
+    if (!req.cookies.userId) {
+      res.end(JSON.stringify({
+        err: {
+          message: '请先登录！',
+        },
+      }));
+    } else next();
+  } else {
+    next();
+  }
+});
 
 // get请求
 app.get('/fetchAll', (req, res) => {
