@@ -23,9 +23,8 @@ function loginCheck(email, password) {
     .then((accounts) => {
       const acc = accounts.find(v => v.email === email && v.password === password);
       if (!acc) {
-        // throw Error('用户不存在');
         return {
-          err: createError('用户名不存在或者用户名和密码不匹配！'),
+          err: createError('用户不存在或者用户名和密码不匹配！'),
         };
       }
       return { acc };
@@ -37,16 +36,21 @@ function registerUser({ email, password, userName }) {
     .then(data => JSON.parse(data))
     .then((users) => {
       if (users.find(user => user.email === email) !== undefined) {
-        throw Error('该邮箱已经注册');
-      } else {
-        const id = uuid.v4();
-        return writeAllAccounts(users.concat({
-          id,
-          email,
-          password,
-          userName,
-        })).then(() => ({ id, email, userName }));
+        // throw Error('该邮箱已经注册');
+        return {
+          err: createError('该邮箱已被注册！'),
+        };
       }
+      const id = uuid.v4();
+      return writeAllAccounts(users.concat({
+        id,
+        email,
+        password,
+        userName,
+      })).then(() => ({
+        acc: { id, email, userName },
+      }
+      ));
     });
 }
 function writeImage(data, name) {
