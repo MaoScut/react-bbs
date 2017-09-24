@@ -4,7 +4,7 @@ import './main.scss';
 import { timeDistance } from '../../utils';
 
 export default function Floor({ item }) {
-  const imgSrc = item.imgHead ? `/images/userHead/${item.ownerId}.jpg` : `/images/userHead/${item.userName[0].toUpperCase()}.png`;
+  const imgSrc = item.headImg;
   return (
     <div className="floor">
       <h2>{item.title}</h2>

@@ -1,10 +1,8 @@
 const path = require('path');
 const uuid = require('uuid');
 const fs = require('fs');
-const follow = require('../follow');
 const { writeAll, readAll, createError } = require('../utils');
 
-// const themesPath = path.join(__dirname, 'themes.json');
 const accountPath = path.join(__dirname, 'account.json');
 
 function getAllAccounts() {
@@ -16,7 +14,7 @@ function writeAllAccounts(arr) {
   return writeAll(arr, accountPath);
 }
 
-// 根据账号和密码检索用户，成功则返回id，不成功，抛出错误
+// 根据账号和密码检索用户
 function loginCheck(email, password) {
   return getAllAccounts()
     .then(data => JSON.parse(data))
@@ -30,13 +28,12 @@ function loginCheck(email, password) {
       return { acc };
     });
 }
-// 注册成功，返回id和邮箱，失败就抛出异常
+// 注册成功，返回id和邮箱
 function registerUser({ email, password, userName }) {
   return getAllAccounts()
     .then(data => JSON.parse(data))
     .then((users) => {
       if (users.find(user => user.email === email) !== undefined) {
-        // throw Error('该邮箱已经注册');
         return {
           err: createError('该邮箱已被注册！'),
         };
@@ -47,6 +44,7 @@ function registerUser({ email, password, userName }) {
         email,
         password,
         userName,
+        headImg: `/images/userHead/default/${userName[0].toUpperCase()}.png`,
       })).then(() => ({
         acc: { id, email, userName },
       }
@@ -54,7 +52,7 @@ function registerUser({ email, password, userName }) {
     });
 }
 function writeImage(data, name) {
-  const imgDir = path.resolve('./dist/images/userHead', `${name}.jpg`);
+  const imgDir = path.resolve('./dist/images/userHead', `${name}.png`);
   fs.writeFile(imgDir, data, (e) => {
     if (e) {
       console.log(e);
@@ -66,13 +64,14 @@ function setImg(id, imgBase64) {
   return getAllAccounts()
     .then(data => JSON.parse(data))
     .then((accounts) => {
+      const imgName = uuid.v4();
       const target = accounts.find(v => v.id === id);
-      target.hasHeadImg = '1';
+      target.headImg = `/images/userHead/${imgName}.png`;
       // writeAllAccounts(accounts).then(() => console.log('ok'));
       const imgUri = imgBase64.replace(/^data:image\/\w+;base64,/, '');
       const imgBuffer = new Buffer(imgUri, 'base64');
       writeAllAccounts(accounts);
-      writeImage(imgBuffer, id);
+      writeImage(imgBuffer, imgName);
       return target;
     })
     .then(account => JSON.stringify(account));

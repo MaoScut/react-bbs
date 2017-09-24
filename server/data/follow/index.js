@@ -47,7 +47,7 @@ function linkAccount(id) {
         follows.forEach((v) => {
           // const test = accounts.find(acc => acc.id = v.userId);
           const tmp = accounts.find(acc => acc.id === v.userId);
-          v.headImg = tmp.hasHeadImg;
+          v.headImg = tmp.headImg;
           v.userName = tmp.userName;
         });
         return follows;

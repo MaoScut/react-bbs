@@ -128,7 +128,9 @@ function getCertainTopic(id) {
         .then(data => JSON.parse(data))
         .then((accounts) => {
           // arr.forEach((v) => {
-          target.userName = accounts.find(acc => acc.id === target.userId).userName;
+          const ac = accounts.find(acc => acc.id === target.userId);
+          target.userName = ac.userName;
+          target.headImg = ac.headImg;
           // });
           return target;
         });
@@ -166,7 +168,9 @@ function fetchTopicsForHome() {
       .then(data => JSON.parse(data))
       .then((accounts) => {
         arr.forEach((topic) => {
-          topic.userName = accounts.find(v => v.id === topic.userId).userName;
+          const acc = accounts.find(v => v.id === topic.userId);
+          topic.userName = acc.userName;
+          topic.headImg = acc.headImg;
           delete topic.content;
           delete topic.ownerId;
           // delete topic.date;

@@ -39,7 +39,7 @@ export default class FirstFloor extends React.Component {
   }
   render() {
     const item = this.props.item;
-    const imgSrc = item.imgHead ? `/images/userHead/${item.userId}.jpg` : `/images/userHead/${item.userName[0].toUpperCase()}.png`;
+    const imgSrc = item.headImg;
     return (
       <div className="floor">
         <h2>{item.title}</h2>
