@@ -58,6 +58,6 @@ typings/
 .env
 
 /sessions
-server/data/account/account.json
-server/data/follow/follow.json
-server/data/topic/topic.json
+/server/data/account/account.json
+/server/data/follow/follow.json
+/server/data/topic/topic.json
