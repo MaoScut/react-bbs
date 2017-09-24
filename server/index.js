@@ -11,11 +11,6 @@ const Express = require('express');
 const history = require('connect-history-api-fallback');
 // const RedisStore = require('connect-redis')(session);
 const serveStatic = require('serve-static');
-// const database = require('./data');
-const account = require('./data/account');
-const topicdb = require('./data/topic');
-const follow = require('./data/follow');
-const utils = require('./data/utils');
 const requestHandler = require('./requestHandler');
 // const sessionStore = require('./server/sessionStore').store;
 
