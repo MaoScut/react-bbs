@@ -71,9 +71,3 @@ Login.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };
-// export default connect(
-//   state => state,
-//   dispatch => ({
-//     actions: bindActionCreators(actions, dispatch),
-//   }),
-// )(Login);

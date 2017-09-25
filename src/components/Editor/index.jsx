@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// 先实现更新
+
 export default class Editor extends React.Component {
   constructor(props) {
     super(props);
@@ -22,9 +20,6 @@ export default class Editor extends React.Component {
       };
     }
   }
-  // componentDidMount() {
-  //   this.props.actions.fetchExactArticle(this.props.match.params.articleId);
-  // }
   saveTitle() {
     this.setState({
       title: this.titleInput.value,
@@ -104,24 +99,3 @@ Editor.propTypes = {
   onSave: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };
-// export default class MyEditor extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {editorState: EditorState.createEmpty()};
-//     this.onChange = (editorState) => this.setState({editorState});
-//   }
-//   render() {
-//     return <Editor editorState={this.state.editorState} onChange={this.onChange} />;
-//   }
-// }
-// 纯函数组件是可以connect的
-// function Editor ({ article }) {
-//   const { title, articleType, content } = article;
-//   return (
-//     <div>
-//       标题<input type="text" value={title} />
-//       分类<input type="text" value={articleType} />
-//       内容<input type="text" value={content} />
-//     </div>
-//   );
-// }
