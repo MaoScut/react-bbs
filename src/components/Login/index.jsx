@@ -29,41 +29,38 @@ export default class Login extends React.Component {
   }
   render() {
     return (
-      <div>
-        <div className="grey-cover" />
-        <div className="login">
-          <div className="head"><span>登录</span></div>
-          <div className="input-container">
-            {this.props.err ? (<div><span>{this.props.err.message}</span></div>) : null}
-            <div>
-              <input
-                type="text"
-                ref={(input) => {
-                  this.emailInput = input;
-                }}
-                onChange={this.saveEmail}
-              />
-              <span>email: &nbsp;</span>
-            </div>
-            <div>
-              <input
-                type="password"
-                ref={(input) => {
-                  this.passwordInput = input;
-                }}
-                onChange={this.savePassword}
-              />
-              <span>passoword:&nbsp;</span>
-            </div>
+      <div className="login">
+        <div className="head"><span>登录</span></div>
+        <div className="input-container">
+          {this.props.err ? (<div><span>{this.props.err.message}</span></div>) : null}
+          <div>
+            <input
+              type="text"
+              ref={(input) => {
+                this.emailInput = input;
+              }}
+              onChange={this.saveEmail}
+            />
+            <span>email: &nbsp;</span>
           </div>
-          <div className="btn-container">
-            <button onClick={() => this.props.onSubmit({
-              email: this.state.email,
-              password: this.state.password,
-            })}
-            >登录</button>
-            <button onClick={() => this.props.onCancel()}>取消</button>
+          <div>
+            <input
+              type="password"
+              ref={(input) => {
+                this.passwordInput = input;
+              }}
+              onChange={this.savePassword}
+            />
+            <span>passoword:&nbsp;</span>
           </div>
+        </div>
+        <div className="btn-container">
+          <button onClick={() => this.props.onSubmit({
+            email: this.state.email,
+            password: this.state.password,
+          })}
+          >登录</button>
+          <button onClick={() => this.props.onCancel()}>取消</button>
         </div>
       </div>
     );

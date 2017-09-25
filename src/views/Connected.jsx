@@ -10,6 +10,7 @@ import Error from './Error';
 // import PrivateArticles from './PrivateArticles';
 import Detail from './Detail';
 import Private from './Private';
+import Pop from './Pop';
 
 function mapDispatchToProps(dispatch) {
   return ({
@@ -60,6 +61,11 @@ const CDetail = connect(
   mapDispatchToProps,
 )(Detail);
 
+const CPop = connect(
+  state => state,
+  mapDispatchToProps,
+)(Pop);
+
 export {
   CHeader as Header,
   CHome as Home,
@@ -69,5 +75,6 @@ export {
   // CPrivateArticles as PrivateArticles,
   CDetail as Detail,
   CPrivate as Private,
+  CPop as Pop,
 };
 
