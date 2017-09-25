@@ -18,7 +18,7 @@ export default class Editor extends React.Component {
       this.state = {
         title: '',
         content: '',
-        type: '',
+        type: '分享',
       };
     }
   }
@@ -45,8 +45,8 @@ export default class Editor extends React.Component {
   }
   render() {
     return (
-      <div>
-        标题<input
+      <div className="editor">
+        标题:<input
           type="text"
           value={this.state.title}
           ref={(input) => {
@@ -54,22 +54,34 @@ export default class Editor extends React.Component {
           }}
           onChange={this.saveTitle}
         />
-        分类<input
+        <br />
+        分类:<select
           type="text"
           value={this.state.type}
           ref={(input) => {
             this.typeInput = input;
           }}
           onChange={this.saveType}
-        />
-        内容<input
-          type="text"
+        >
+          <option value="分享" selected>分享</option>
+          <option value="教程">教程</option>
+          <option value="提问">提问</option>
+          <option value="招聘">招聘</option>
+          <option value="作品">作品</option>
+        </select>
+        <br />
+        内容:
+        <br />
+        <textarea
+          className="textarea"
+          rows="10"
           value={this.state.content}
           ref={(input) => {
             this.contentInput = input;
           }}
           onChange={this.saveContent}
         />
+        <br />
         <button onClick={this.save}>add/update</button>
         <button onClick={() => this.props.onCancel()}>cancel</button>
       </div>
