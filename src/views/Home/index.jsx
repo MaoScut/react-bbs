@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import List from '../../components/List';
-import { LoginPop, RegistPop } from '../../components/Pop';
-import Editor from '../../components/Editor';
+// import { LoginPop, RegistPop } from '../../components/Pop';
+// import Editor from '../../components/Editor';
 import './main.scss';
 
 export default class Home extends React.Component {
@@ -11,7 +11,7 @@ export default class Home extends React.Component {
   //   this.add = this.add.bind(this);
   // }
   componentDidMount() {
-    this.props.actions.fetchArticles();
+    this.props.actions.fetchTopics();
   }
   render() {
     return (
@@ -20,7 +20,7 @@ export default class Home extends React.Component {
           <button onClick={this.props.actions.showEditor}>+ 发新主题</button>
         </div>
         <List items={this.props.topics} onEnter={this.props.actions.enterTopic} />
-        {this.props.auth.login ?
+        {/* {this.props.auth.login ?
           <LoginPop
             onSubmit={this.props.actions.loginUser}
             onCancel={this.props.actions.toggleLogin}
@@ -40,7 +40,7 @@ export default class Home extends React.Component {
             onSave={this.props.actions.saveTopic}
             onCancel={this.props.actions.cancelEdit}
           />
-          : null}
+          : null} */}
       </section>
     );
   }
