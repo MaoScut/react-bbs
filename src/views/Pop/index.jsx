@@ -12,7 +12,7 @@ export default function Pop(props) {
   const all = [props.auth.login, props.auth.regist, props.editor.create];
   if (!all.some(v => v)) return null;
   return (
-    <div>
+    <div className="pop">
       <div className="gray-cover" />
       {props.auth.login ?
         <Login
