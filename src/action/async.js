@@ -1,43 +1,50 @@
 import Cookie from 'js-cookie';
 import * as ActionTypes from '../actionTypes';
-// import * as api from '../store';
 import * as api from '../store/ajax';
-
 import history from '../history';
 
-export function fetchArticles() {
+//
+// ─── TOPICS ─────────────────────────────────────────────────────────────────────
+//
+
+export function fetchTopics() {
   return (dispatch) => {
     api.fetchArticles().then(result => dispatch({
-      type: ActionTypes.FETCH_ARTICLES,
+      type: ActionTypes.FETCH_TOPICS,
       payload: result,
     }));
   };
 }
-export function fetchExactArticle(articleId) {
-  return (dispatch) => {
-    api.fetchArticles().then((result) => {
-      const article = result.filter(v => v.articleId === articleId)[0];
-      dispatch({
-        type: ActionTypes.FETCH_EXACT_ARTICLES,
-        payload: article,
-      });
-    });
-  };
-}
+// export function fetchExactArticle(articleId) {
+//   return (dispatch) => {
+//     api.fetchArticles().then((result) => {
+//       const article = result.filter(v => v.articleId === articleId)[0];
+//       dispatch({
+//         type: ActionTypes.FETCH_EXACT_ARTICLES,
+//         payload: article,
+//       });
+//     });
+//   };
+// }
 
-function errorHandler(dispatch, error, type) {
-  if (error.status === 401) {
-    dispatch({
-      type,
-      payload: 'you are not authorized to do this',
-    });
-  } else {
-    dispatch({
-      type,
-      payload: error.message,
-    });
-  }
-}
+// function errorHandler(dispatch, error, type) {
+//   if (error.status === 401) {
+//     dispatch({
+//       type,
+//       payload: 'you are not authorized to do this',
+//     });
+//   } else {
+//     dispatch({
+//       type,
+//       payload: error.message,
+//     });
+//   }
+// }
+// ────────────────────────────────────────────────────────────────────────────────
+
+//
+// ─── AUTH ───────────────────────────────────────────────────────────────────────
+//
 
 export function registerUser(registMessage) {
   return (dispatch) => {
@@ -87,6 +94,11 @@ export function toggleRegist() {
     type: ActionTypes.TOGGLE_REGIST,
   };
 }
+// ────────────────────────────────────────────────────────────────────────────────
+
+//
+// ─── SUBMIT ─────────────────────────────────────────────────────────────────────
+//
 
 export function add({ title, content, type }) {
   if (Cookie.get('sid')) {
@@ -97,71 +109,20 @@ export function add({ title, content, type }) {
         content,
         type,
       }).then(articles => dispatch({
-        type: ActionTypes.FETCH_ARTICLES,
+        type: ActionTypes.FETCH_TOPICS,
         payload: articles,
       }));
     };
   }
   return toggleLogin();
 }
-
-export function myArticles() {
-  // const ownerId = Cookie.get('token');
-  // const ownId = Cookie.get();
-  return (dispatch) => {
-    api.fetchPrivateArticles().then((result) => {
-      dispatch({
-        type: ActionTypes.GET_PRIVATE_ARTICLES,
-        payload: result,
-      });
-      history.push('/private');
-    });
-  };
-}
-
-export function showEditor() {
-  if (Cookie.get('sid')) {
-    return {
-      type: ActionTypes.SHOW_CREATE_EDITOR,
-    };
-  }
-  return toggleLogin();
-}
-export function cancelEdit() {
-  return {
-    type: ActionTypes.HIDE_EDITOR,
-  };
-}
-
 export function saveTopic(topic) {
   return (dispatch) => {
     api.save(topic)
-      .then(() => dispatch(fetchArticles()))
+      .then(() => dispatch(fetchTopics()))
       .then(() => dispatch({
         type: ActionTypes.HIDE_EDITOR,
       }));
-  };
-}
-
-export function deleteArticle(id) {
-  return (dispatch) => {
-    api.deleteArticle(id).then(() => dispatch(myArticles()));
-  };
-}
-
-export function fetchCertainFollows(id) {
-  return (dispatch) => {
-    api.fetchCertainFollows(id).then(res => dispatch({
-      type: ActionTypes.FETCH_CERTAINFOLLOWS,
-      payload: res,
-    }));
-  };
-}
-
-export function showReplyEditor(topicId) {
-  return {
-    type: ActionTypes.SHOW_REPLY_EDITOR,
-    payload: topicId,
   };
 }
 
@@ -185,12 +146,67 @@ export function upTopic(id) {
 export function upFollow(obj) {
   return (dispatch) => {
     api.upFollow(obj).then(arr => dispatch({
-      type: ActionTypes.FETCH_CERTAINFOLLOWS,
+      type: ActionTypes.FETCH_CERTAIN_FOLLOWS,
       payload: arr,
     }));
   };
 }
 
+// export function deleteArticle(id) {
+//   return (dispatch) => {
+//     api.deleteArticle(id).then(() => dispatch(myArticles()));
+//   };
+// }
+
+// export function myArticles() {
+//   return (dispatch) => {
+//     api.fetchPrivateArticles().then((result) => {
+//       dispatch({
+//         type: ActionTypes.GET_PRIVATE_ARTICLES,
+//         payload: result,
+//       });
+//       history.push('/private');
+//     });
+//   };
+// }
+// ────────────────────────────────────────────────────────────────────────────────
+
+//
+// ─── EDITOR ─────────────────────────────────────────────────────────────────────
+//
+
+export function showEditor() {
+  if (Cookie.get('sid')) {
+    return {
+      type: ActionTypes.SHOW_CREATE_EDITOR,
+    };
+  }
+  return toggleLogin();
+}
+export function cancelEdit() {
+  return {
+    type: ActionTypes.HIDE_EDITOR,
+  };
+}
+export function showReplyEditor(topicId) {
+  return {
+    type: ActionTypes.SHOW_REPLY_EDITOR,
+    payload: topicId,
+  };
+}
+
+//
+// ─── DETAIL ─────────────────────────────────────────────────────────────────────
+// 
+
+export function fetchCertainFollows(id) {
+  return (dispatch) => {
+    api.fetchCertainFollows(id).then(res => dispatch({
+      type: ActionTypes.FETCH_CERTAIN_FOLLOWS,
+      payload: res,
+    }));
+  };
+}
 export function fetchTopicContent(id) {
   return (dispatch) => {
     api.fetchTopicContent(id).then(topic => dispatch({
@@ -208,6 +224,17 @@ export function fetchTopic(id) {
     }));
   };
 }
+export function enterTopic(topicObj) {
+  return {
+    type: ActionTypes.ENTER_TOPIC,
+    payload: topicObj,
+  };
+}
+// ────────────────────────────────────────────────────────────────────────────────
+
+//
+// ─── SETHEADIMG ─────────────────────────────────────────────────────────────────
+//
 
 export function setUserHeadImg(imgUri) {
   return (dispatch) => {
@@ -217,10 +244,4 @@ export function setUserHeadImg(imgUri) {
     }));
   };
 }
-
-export function enterTopic(topicObj) {
-  return {
-    type: ActionTypes.ENTER_TOPIC,
-    payload: topicObj,
-  };
-}
+// ────────────────────────────────────────────────────────────────────────────────
