@@ -1,12 +1,9 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
-// import Detail from '../components/Detail';
-// import Editor from '../components/Editor';
-// import { Home, Header, Error, PrivateArticles, Login, Detail } from '../components/Connected';
-// import { Header } from '../components/Connected';
 import { Home, Detail, Header, Private, Error, Pop } from '../views/Connected';
-// import RequireAuth from '../components/RequireAuth';
 import history from '../history';
+import '../style/icon.scss';
+import '../style/main.scss';
 
 export default () => (
   <Router history={history}>

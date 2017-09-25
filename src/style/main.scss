@@ -9,3 +9,13 @@ html,body{
     margin: 0 auto;
   }
 }
+button{
+  border: none;
+  line-height: 2;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 3px;
+  &:hover{
+    background-color: lightseagreen;
+  }
+}

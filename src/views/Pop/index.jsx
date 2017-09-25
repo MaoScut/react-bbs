@@ -4,22 +4,7 @@ import Login from '../../components/Login';
 import Regist from '../../components/Regist';
 import Editor from '../../components/Editor';
 import ReplyPop from '../../components/ReplyPop';
-
-export function LoginPop({ onSubmit, onCancel, err }) {
-  return (
-    <div>
-      <Login onSubmit={onSubmit} onCancel={onCancel} err={err} />
-    </div>
-  );
-}
-
-export function RegistPop({ onSubmit, onCancel, err }) {
-  return (
-    <div>
-      <Regist onSubmit={onSubmit} onCancel={onCancel} err={err} />
-    </div>
-  );
-}
+import './main.scss';
 
 export default function Pop(props) {
   const actions = props.actions;
@@ -56,11 +41,3 @@ export default function Pop(props) {
     </div>
   );
 }
-LoginPop.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
-};
-RegistPop.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
-};

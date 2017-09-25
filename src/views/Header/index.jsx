@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 require('./main.scss');
-require('../../style/icon.scss');
-require('../../style/main.scss');
 
 export default function ({ auth, actions }) {
   const rightContent = auth.auth ?
