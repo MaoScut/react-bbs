@@ -7,7 +7,7 @@ const initialState = {
   follows: null,
 };
 export default handleActions({
-  [ActionTypes.FETCH_CERTAINFOLLOWS](state, action) {
+  [ActionTypes.FETCH_CERTAIN_FOLLOWS](state, action) {
     return { ...state, follows: action.payload };
   },
   [ActionTypes.FETCH_TOPIC_CONTENT](state, action) {

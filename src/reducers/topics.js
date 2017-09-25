@@ -3,7 +3,7 @@ import * as ActionTypes from '../actionTypes';
 
 const initialState = null;
 const reducer = handleActions({
-  [ActionTypes.FETCH_ARTICLES](state, action) {
+  [ActionTypes.FETCH_TOPICS](state, action) {
     return action.payload;
   },
 }, initialState);
