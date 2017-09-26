@@ -32,6 +32,7 @@ function add(follow) {
       topic.getAllTopics().then(data => JSON.parse(data)).then((arr) => {
         const target = arr.find(v => v.id === follow.topicId);
         target.replyNum = Number(target.replyNum) + 1;
+        target.lastReply = new Date();
         return topic.writeAllTopics(arr);
       });
       return writeAllFollows(res.concat(createFollowObj(follow)));
