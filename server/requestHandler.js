@@ -14,7 +14,7 @@ function login(req, res) {
     if (result.err) {
       res.end(JSON.stringify(result));
     } else {
-      res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, `email=${acc.email}`, `userId=${acc.id}`, `userName=${acc.userName}`]);
+      res.setHeader('Set-Cookie', [`sid=${req.sessionID};httpOnly`, `email=${acc.email};httpOnly`, `userId=${acc.id};httpOnly`, `userName=${acc.userName}`]);
       // acc就剩下userName了
       result.acc = utils.cutObj(acc, ['userName']);
       res.end(JSON.stringify(result));

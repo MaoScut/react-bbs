@@ -18,9 +18,6 @@ const app = new Express();
 const port = 8080;
 
 const compiler = webpack(config);
-// app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
-// app.use(webpackHotMiddleware(compiler));
-
 // webpack要放在前面才能得到bundle.js
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
