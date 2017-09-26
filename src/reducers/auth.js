@@ -8,7 +8,7 @@ const initialState = {
   login: false,
   regist: false,
 };
-if (Cookie.get('sid')) {
+if (Cookie.get('userName')) {
   initialState.auth = true;
   initialState.name = Cookie.get('userName');
 }
