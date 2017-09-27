@@ -155,7 +155,9 @@ function linkAccount() {
       return account.getAllAccounts().then(data => JSON.parse(data))
         .then((accounts) => {
           topics.forEach((topic) => {
-            topic.userName = accounts.find(acc => acc.id === topic.userId).userName;
+            const targetAcc = accounts.find(acc => acc.id === topic.userId);
+            topic.userName = targetAcc.userName;
+            topic.headImg = targetAcc.headImg;
           });
           return topics;
         });
