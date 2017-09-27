@@ -86,3 +86,7 @@ export function fetchTopic(id) {
 export function setUserHeadImg(imgUri) {
   return ajax('post', '/setUserHeadImg', { imgUri }).then(data => JSON.parse(data));
 }
+
+export function logoutUser() {
+  return ajax('post', '/logout');
+}
