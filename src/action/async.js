@@ -134,10 +134,20 @@ export function submitReply(follow) {
 
 export function upTopic(id) {
   return (dispatch) => {
-    api.upTopic(id).then(topic => dispatch({
-      type: ActionTypes.FETCH_TOPIC,
-      payload: topic,
-    }));
+    api.upTopic(id).then((topic) => {
+      if (topic.err) {
+        // console.log(topic.err);
+        dispatch({
+          type: ActionTypes.LOGIN_FAIL,
+          payload: topic.err,
+        });
+      } else {
+        dispatch({
+          type: ActionTypes.FETCH_TOPIC,
+          payload: topic,
+        });
+      }
+    }).catch(() => console.log('err'));
   };
 }
 

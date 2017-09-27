@@ -19,6 +19,9 @@ const reducer = handleActions({
       name: action.payload,
     };
   },
+  [ActionTypes.LOGIN_FAIL](state) {
+    return { ...state, login: !state.login };    
+  },
   [ActionTypes.UNAUTH_USER]() {
     return {
       auth: false,
