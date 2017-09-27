@@ -176,7 +176,7 @@ export function upFollow(obj) {
 //
 
 export function showEditor() {
-  if (Cookie.get('sid')) {
+  if (Cookie.get('userName')) {
     return {
       type: ActionTypes.SHOW_CREATE_EDITOR,
     };
