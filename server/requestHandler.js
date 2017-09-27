@@ -14,7 +14,7 @@ function login(req, res) {
     if (result.err) {
       res.end(JSON.stringify(result));
     } else {
-      res.setHeader('Set-Cookie', [`sid=${req.sessionID};httpOnly`, `email=${acc.email};httpOnly`, `userId=${acc.id};httpOnly`, `userName=${acc.userName}`]);
+      res.setHeader('Set-Cookie', [`userId=${acc.id};httpOnly`, `userName=${acc.userName}`]);
       // acc就剩下userName了
       result.acc = utils.cutObj(acc, ['userName']);
       res.end(JSON.stringify(result));
@@ -69,7 +69,7 @@ function regist(req, res) {
       res.end(JSON.stringify(result));
     } else {
       const acc = result.acc;
-      res.setHeader('Set-Cookie', [`sid=${req.sessionID}`, `email=${acc.email}`, `userId=${acc.id}`, `userName=${acc.userName}`]);
+      res.setHeader('Set-Cookie', [`userId=${acc.id}; httpOnly`, `userName=${acc.userName}`]);
       res.end(JSON.stringify(result));
     }
   });
@@ -117,8 +117,20 @@ function setUserHeadImg(req, res) {
   const id = req.cookies.userId;
   account.setImg(id, req.body.imgUri).then(data => res.end(data));
 }
+
+function logout(req, res) {
+  const pass = new Date(Date.now() - 1);
+  res.cookie('userName', null, {
+    expires: pass,
+  });
+  res.cookie('userId', null, {
+    expires: pass,
+  });
+  res.end();
+}
 module.exports = {
   login,
+  logout,
   fetchAll,
   fetchFollows,
   regist,
