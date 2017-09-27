@@ -105,10 +105,10 @@ function upFollow(req, res) {
 function fetchTopic(req, res) {
   // 获取一个主题帖的所有信息，home中只是简略信息
   // 返回的json数据要有如下属性
-  topicdb.getCertainTopic(req.body.id).then(data => res.end(data));
+  topicdb.getCertainTopic(req.query.id).then(data => res.end(data));
 }
 function fetchTopicContent(req, res) {
-  topicdb.getCertainTopicContent(req.body.id).then(data => res.end(data));
+  topicdb.getCertainTopicContent(req.query.id).then(data => res.end(data));
 }
 
 function setUserHeadImg(req, res) {
