@@ -15,7 +15,9 @@ export default class Editor extends React.Component {
     } else {
       this.state = {
         title: '',
+        titleErr: '',
         content: '',
+        contentErr: '',
         type: '分享',
       };
     }
@@ -23,11 +25,13 @@ export default class Editor extends React.Component {
   saveTitle() {
     this.setState({
       title: this.titleInput.value,
+      // titleErr: null,
     });
   }
   saveContent() {
     this.setState({
       content: this.contentInput.value,
+      // contentErr: null,
     });
   }
   saveType() {
@@ -36,7 +40,21 @@ export default class Editor extends React.Component {
     });
   }
   save() {
-    this.props.onSave(this.state);
+    if (this.state.title !== '' && this.state.content !== '') {
+      this.props.onSave({
+        title: this.state.title,
+        content: this.state.content,
+        type: this.state.type,
+      });
+    } else {
+      // 既然现在输入是没有限定的，那么就提交的时候一起判断好了
+      const titleErr = this.state.title === '' ? '请输入标题' : null;
+      const contentErr = this.state.content === '' ? '请输入内容' : null;
+      this.setState({
+        titleErr,
+        contentErr,
+      });
+    }
   }
   render() {
     return (
@@ -49,6 +67,7 @@ export default class Editor extends React.Component {
           }}
           onChange={this.saveTitle}
         />
+        <span>{this.state.titleErr}</span>
         <br />
         分类:<select
           type="text"
@@ -76,6 +95,7 @@ export default class Editor extends React.Component {
           }}
           onChange={this.saveContent}
         />
+        <span>{this.state.contentErr}</span>
         <br />
         <button onClick={this.save}>add/update</button>
         <button onClick={() => this.props.onCancel()}>cancel</button>
