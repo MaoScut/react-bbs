@@ -69,6 +69,12 @@ app.get('/fetchAll', (req, res) => {
 app.get('/fetchFollows', (req, res) => {
   requestHandler.fetchFollows(req, res);
 });
+app.get('/fetchTopic', (req, res) => {
+  requestHandler.fetchTopic(req, res);
+});
+app.get('/fetchTopicContent', (req, res) => {
+  requestHandler.fetchTopicContent(req, res);
+});
 
 // post请求
 app.post('/login', (req, res) => {
@@ -88,12 +94,6 @@ app.post('/upTopic', (req, res) => {
 });
 app.post('/upFollow', (req, res) => {
   requestHandler.upFollow(req, res);
-});
-app.post('/fetchTopic', (req, res) => {
-  requestHandler.fetchTopic(req, res);
-});
-app.post('/fetchTopicContent', (req, res) => {
-  requestHandler.fetchTopicContent(req, res);
 });
 app.post('/setUserHeadImg', (req, res) => {
   requestHandler.setUserHeadImg(req, res);
