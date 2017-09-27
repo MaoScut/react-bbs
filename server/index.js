@@ -98,6 +98,9 @@ app.post('/fetchTopicContent', (req, res) => {
 app.post('/setUserHeadImg', (req, res) => {
   requestHandler.setUserHeadImg(req, res);
 });
+app.post('/logout', (req, res) => {
+  requestHandler.logout(req, res);
+});
 
 app.listen(port, (error) => {
   if (error) {

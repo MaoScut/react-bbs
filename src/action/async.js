@@ -76,9 +76,7 @@ export function loginUser({ email, password }) {
 
 export function logoutUser() {
   return (dispatch) => {
-    Cookie.remove('sid');
-    Cookie.remove('email');
-    dispatch({ type: ActionTypes.UNAUTH_USER });
+    api.logoutUser().then(() => dispatch({ type: ActionTypes.UNAUTH_USER }));
     history.push('/');
   };
 }
