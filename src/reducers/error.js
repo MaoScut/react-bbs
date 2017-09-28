@@ -21,6 +21,10 @@ export default function (state, action) {
       return {
         registErr: action.payload,
       };
+    case ActionTypes.NEED_AUTH:
+      return {
+        loginErr: action.payload,
+      };
     default: return initialState;
   }
 }

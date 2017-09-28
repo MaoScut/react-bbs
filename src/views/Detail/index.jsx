@@ -29,7 +29,7 @@ export default class Detail extends React.Component {
   upClick(e) {
     if (!e.target.className.includes('icon-aixin')) return false;
     // this.props.actions.upTopic(this.props.detail[0].id);
-    this.props.actions.upFollow({
+    this.props.actions.postUpFollow({
       followId: e.target.id,
     });
     return false;
@@ -38,7 +38,8 @@ export default class Detail extends React.Component {
     let topic = <Loading />;
     let follows = <Loading />;
     if (this.props.detail.topic !== null) {
-      topic = <FirstFloor upAction={this.props.actions.upTopic} item={this.props.detail.topic} />;
+      // topic = <FirstFloor upAction={this.props.actions.upTopic} item={this.props.detail.topic} />;
+      topic = <FirstFloor upAction={this.props.actions.postUpTopic} item={this.props.detail.topic} />;
     }
     if (this.props.detail.follows !== null) {
       follows = this.props.detail.follows.map(v => <Floor item={v} />);

@@ -46,6 +46,14 @@ export function fetchTopics() {
 // ─── AUTH ───────────────────────────────────────────────────────────────────────
 //
 
+export function needAuth() {
+  return {
+    type: ActionTypes.NEED_AUTH,
+    payload: {
+      message: '需要登录！',
+    },
+  };
+}
 export function registerUser(registMessage) {
   return (dispatch) => {
     api.registerUser(registMessage)
@@ -95,6 +103,43 @@ export function toggleRegist() {
 // ────────────────────────────────────────────────────────────────────────────────
 
 //
+// ─── DETAIL ─────────────────────────────────────────────────────────────────────
+// 
+
+export function fetchCertainFollows(id) {
+  return (dispatch) => {
+    api.fetchCertainFollows(id).then(res => dispatch({
+      type: ActionTypes.FETCH_CERTAIN_FOLLOWS,
+      payload: res,
+    }));
+  };
+}
+export function fetchTopicContent(id) {
+  return (dispatch) => {
+    api.fetchTopicContent(id).then(topic => dispatch({
+      type: ActionTypes.FETCH_TOPIC_CONTENT,
+      payload: topic,
+    }));
+  };
+}
+
+export function fetchTopic(id) {
+  return (dispatch) => {
+    api.fetchTopic(id).then(topic => dispatch({
+      type: ActionTypes.FETCH_TOPIC,
+      payload: topic,
+    }));
+  };
+}
+export function enterTopic(topicObj) {
+  return {
+    type: ActionTypes.ENTER_TOPIC,
+    payload: topicObj,
+  };
+}
+// ────────────────────────────────────────────────────────────────────────────────
+
+//
 // ─── SUBMIT ─────────────────────────────────────────────────────────────────────
 //
 
@@ -132,7 +177,31 @@ export function submitReply(follow) {
   };
 }
 
-export function upTopic(id) {
+// export function upTopic(id) {
+//   return (dispatch) => {
+//     api.upTopic(id).then((topic) => {
+//       if (topic.err) {
+//         // console.log(topic.err);
+//         dispatch({
+//           type: ActionTypes.LOGIN_FAIL,
+//           payload: topic.err,
+//         });
+//       } else {
+//         dispatch({
+//           type: ActionTypes.FETCH_TOPIC,
+//           payload: topic,
+//         });
+//       }
+//     });
+//   };
+// }
+export function postUpTopic(id) {
+  return {
+    type: ActionTypes.POST_UP_TOPIC,
+    payload: id,
+  };
+}
+export function receiveUpTopic(id) {
   return (dispatch) => {
     api.upTopic(id).then((topic) => {
       if (topic.err) {
@@ -147,7 +216,7 @@ export function upTopic(id) {
           payload: topic,
         });
       }
-    }).catch(() => console.log('err'));
+    });
   };
 }
 
@@ -159,6 +228,21 @@ export function upFollow(obj) {
     }));
   };
 }
+export function postUpFollow(obj) {
+  return {
+    type: ActionTypes.POST_UP_FOLLOW,
+    payload: obj,
+  };
+}
+export function receiveUpFollow(obj) {
+  return (dispatch) => {
+    api.upFollow(obj).then(arr => dispatch({
+      type: ActionTypes.FETCH_CERTAIN_FOLLOWS,
+      payload: arr,
+    }));
+  };
+}
+
 
 // export function deleteArticle(id) {
 //   return (dispatch) => {
@@ -184,12 +268,9 @@ export function upFollow(obj) {
 //
 
 export function showEditor() {
-  if (Cookie.get('userName')) {
-    return {
-      type: ActionTypes.SHOW_CREATE_EDITOR,
-    };
-  }
-  return toggleLogin();
+  return {
+    type: ActionTypes.SHOW_CREATE_EDITOR,
+  };
 }
 export function cancelEdit() {
   return {
@@ -203,42 +284,6 @@ export function showReplyEditor(topicId) {
   };
 }
 
-//
-// ─── DETAIL ─────────────────────────────────────────────────────────────────────
-// 
-
-export function fetchCertainFollows(id) {
-  return (dispatch) => {
-    api.fetchCertainFollows(id).then(res => dispatch({
-      type: ActionTypes.FETCH_CERTAIN_FOLLOWS,
-      payload: res,
-    }));
-  };
-}
-export function fetchTopicContent(id) {
-  return (dispatch) => {
-    api.fetchTopicContent(id).then(topic => dispatch({
-      type: ActionTypes.FETCH_TOPIC_CONTENT,
-      payload: topic,
-    }));
-  };
-}
-
-export function fetchTopic(id) {
-  return (dispatch) => {
-    api.fetchTopic(id).then(topic => dispatch({
-      type: ActionTypes.FETCH_TOPIC,
-      payload: topic,
-    }));
-  };
-}
-export function enterTopic(topicObj) {
-  return {
-    type: ActionTypes.ENTER_TOPIC,
-    payload: topicObj,
-  };
-}
-// ────────────────────────────────────────────────────────────────────────────────
 
 //
 // ─── SETHEADIMG ─────────────────────────────────────────────────────────────────

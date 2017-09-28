@@ -20,7 +20,10 @@ const reducer = handleActions({
     };
   },
   [ActionTypes.LOGIN_FAIL](state) {
-    return { ...state, login: !state.login };    
+    return { ...state, login: !state.login };
+  },
+  [ActionTypes.NEED_AUTH](state) {
+    return { ...state, login: true };
   },
   [ActionTypes.UNAUTH_USER]() {
     return {

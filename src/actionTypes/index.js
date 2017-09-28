@@ -53,3 +53,13 @@ export const SHOW_EDITOR = 'SHOW_EDITOR';
 export const UP_TOPIC = 'UP_TOPIC';
 export const SUBMIT_IMG = 'SUBMIT_IMG';
 // ────────────────────────────────────────────────────────────────────────────────
+
+//
+// ─── POST ───────────────────────────────────────────────────────────────────────
+//
+
+export const POST_UP_TOPIC = 'POST_UP_TOPIC';
+export const RECEIVE_UP_TOPIC = 'RECEIVE_UP_TOPIC';
+export const NEED_AUTH = 'NEED_AUTH';
+export const ADD_NEW_TOPIC = 'ADD_NEW_TOPIC';
+export const POST_UP_FOLLOW = 'POST_UP_FOLLOW';
