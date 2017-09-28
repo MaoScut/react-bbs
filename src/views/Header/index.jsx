@@ -16,8 +16,8 @@ export default function ({ auth, actions }) {
       <i className="iconfont icon-zhankai" />
       {/* <div className="search" /> */}
       {/* <div className="right"><Link to="/">Home</Link></div> */}
-      <div><button onClick={() => actions.toggleRegist()}>注册</button></div>
-      <div><button onClick={() => actions.toggleLogin()}>登录</button></div>
+      <div><button onClick={() => actions.popRegist()}>注册</button></div>
+      <div><button onClick={() => actions.popLogin()}>登录</button></div>
       {/* <div><button>search</button></div>
       <div><button>more</button></div> */}
     </div>);

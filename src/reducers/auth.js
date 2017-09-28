@@ -31,11 +31,17 @@ const reducer = handleActions({
       name: undefined,
     };
   },
-  [ActionTypes.TOGGLE_LOGIN](state) {
-    return { ...state, login: !state.login };
+  [ActionTypes.POP_LOGIN](state) {
+    return { ...state, login: true };
   },
-  [ActionTypes.TOGGLE_REGIST](state) {
-    return { ...state, regist: !state.regist };
+  [ActionTypes.HIDE_LOGIN](state) {
+    return { ...state, login: false };
+  },
+  [ActionTypes.POP_REGIST](state) {
+    return { ...state, regist: true };
+  },
+  [ActionTypes.HIDE_REGIST](state) {
+    return { ...state, regist: false };
   },
 }, initialState);
 export default reducer;

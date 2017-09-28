@@ -5,7 +5,6 @@
 //
 
 export const FETCH_TOPICS = 'FETCH_TOPICS';
-// export const FETCH_EXACT_ARTICLES = 'FETCH_EXACT_ARTICLES';
 // ────────────────────────────────────────────────────────────────────────────────
 
 //
@@ -15,15 +14,14 @@ export const FETCH_TOPICS = 'FETCH_TOPICS';
 export const AUTH_USER = 'AUTH_USER';
 export const UNAUTH_USER = 'UNAUTH_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
-export const TOGGLE_LOGIN = 'TOGGLE_LOGIN';
-export const TOGGLE_REGIST = 'TOGGLE_REGIST';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const REGIST_FAIL = 'REGIST_FAIL';
+export const NEED_AUTH = 'NEED_AUTH';
+export const HIDE_LOGIN = 'HIDE_LOGIN';
+export const HIDE_REGIST = 'HIDE_REGIST';
+export const POP_LOGIN = 'POP_LOGIN';
+export const POP_REGIST = 'POP_REGIST';
 // ────────────────────────────────────────────────────────────────────────────────
-
-// export const CERTAIN_ARTILCE = 'CERTAIN_ARTICLE';
-// export const ADD_ARTICLE = 'ADD_ARTICLE';
-// export const GET_PRIVATE_ARTICLES = 'GET_PRIVATE_ARTICLES';
 
 //
 // ─── DETAIL ─────────────────────────────────────────────────────────────────────
@@ -40,9 +38,8 @@ export const ENTER_TOPIC = 'ENTER_TOPIC';
 //
 
 export const SHOW_REPLY_EDITOR = 'SHOW_REPLY_EDITOR';
-// export const HIDE_REPLY_EDITOR = 'HIDE_REPLY_EDITOR';
 export const SHOW_CREATE_EDITOR = 'SHOW_CREATE_EDITOR';
-export const HIDE_EDITOR = 'HIDE_EDOTOR';
+export const HIDE_EDITOR = 'HIDE_EDITOR';
 export const SHOW_EDITOR = 'SHOW_EDITOR';
 // ────────────────────────────────────────────────────────────────────────────────
 
@@ -50,16 +47,10 @@ export const SHOW_EDITOR = 'SHOW_EDITOR';
 // ─── SUBMIT ─────────────────────────────────────────────────────────────────────
 //
 
-export const UP_TOPIC = 'UP_TOPIC';
 export const SUBMIT_IMG = 'SUBMIT_IMG';
-// ────────────────────────────────────────────────────────────────────────────────
-
-//
-// ─── POST ───────────────────────────────────────────────────────────────────────
-//
-
 export const POST_UP_TOPIC = 'POST_UP_TOPIC';
 export const RECEIVE_UP_TOPIC = 'RECEIVE_UP_TOPIC';
-export const NEED_AUTH = 'NEED_AUTH';
 export const ADD_NEW_TOPIC = 'ADD_NEW_TOPIC';
 export const POST_UP_FOLLOW = 'POST_UP_FOLLOW';
+// ────────────────────────────────────────────────────────────────────────────────
+

@@ -15,17 +15,6 @@ export function fetchTopics() {
     }));
   };
 }
-// export function fetchExactArticle(articleId) {
-//   return (dispatch) => {
-//     api.fetchArticles().then((result) => {
-//       const article = result.filter(v => v.articleId === articleId)[0];
-//       dispatch({
-//         type: ActionTypes.FETCH_EXACT_ARTICLES,
-//         payload: article,
-//       });
-//     });
-//   };
-// }
 
 // function errorHandler(dispatch, error, type) {
 //   if (error.status === 401) {
@@ -66,7 +55,6 @@ export function registerUser(registMessage) {
       });
   };
 }
-
 export function loginUser({ email, password }) {
   return (dispatch) => {
     api.loginUser({ email, password }).then((result) => {
@@ -81,23 +69,30 @@ export function loginUser({ email, password }) {
       });
   };
 }
-
 export function logoutUser() {
   return (dispatch) => {
     api.logoutUser().then(() => dispatch({ type: ActionTypes.UNAUTH_USER }));
     history.push('/');
   };
 }
-
-export function toggleLogin() {
+export function popLogin() {
   return {
-    type: ActionTypes.TOGGLE_LOGIN,
+    type: ActionTypes.POP_LOGIN,
   };
 }
-
-export function toggleRegist() {
+export function hideLogin() {
   return {
-    type: ActionTypes.TOGGLE_REGIST,
+    type: ActionTypes.HIDE_LOGIN,
+  };
+}
+export function popRegist() {
+  return {
+    type: ActionTypes.POP_REGIST,
+  };
+}
+export function hideRegist() {
+  return {
+    type: ActionTypes.HIDE_REGIST,
   };
 }
 // ────────────────────────────────────────────────────────────────────────────────
@@ -122,7 +117,6 @@ export function fetchTopicContent(id) {
     }));
   };
 }
-
 export function fetchTopic(id) {
   return (dispatch) => {
     api.fetchTopic(id).then(topic => dispatch({
@@ -142,23 +136,7 @@ export function enterTopic(topicObj) {
 //
 // ─── SUBMIT ─────────────────────────────────────────────────────────────────────
 //
-
-export function add({ title, content, type }) {
-  if (Cookie.get('sid')) {
-    return (dispatch) => {
-      api.add({
-        // ownerId: Cookie.get('token'),
-        title,
-        content,
-        type,
-      }).then(articles => dispatch({
-        type: ActionTypes.FETCH_TOPICS,
-        payload: articles,
-      }));
-    };
-  }
-  return toggleLogin();
-}
+// 提交新文章，这里不需要去验证登录，按钮点击的时候就检查过了
 export function saveTopic(topic) {
   return (dispatch) => {
     api.save(topic)
@@ -168,7 +146,6 @@ export function saveTopic(topic) {
       }));
   };
 }
-
 export function submitReply(follow) {
   return (dispatch) => {
     api.sendReply(follow).then(() => dispatch({
@@ -177,24 +154,6 @@ export function submitReply(follow) {
   };
 }
 
-// export function upTopic(id) {
-//   return (dispatch) => {
-//     api.upTopic(id).then((topic) => {
-//       if (topic.err) {
-//         // console.log(topic.err);
-//         dispatch({
-//           type: ActionTypes.LOGIN_FAIL,
-//           payload: topic.err,
-//         });
-//       } else {
-//         dispatch({
-//           type: ActionTypes.FETCH_TOPIC,
-//           payload: topic,
-//         });
-//       }
-//     });
-//   };
-// }
 export function postUpTopic(id) {
   return {
     type: ActionTypes.POST_UP_TOPIC,
@@ -242,25 +201,6 @@ export function receiveUpFollow(obj) {
     }));
   };
 }
-
-
-// export function deleteArticle(id) {
-//   return (dispatch) => {
-//     api.deleteArticle(id).then(() => dispatch(myArticles()));
-//   };
-// }
-
-// export function myArticles() {
-//   return (dispatch) => {
-//     api.fetchPrivateArticles().then((result) => {
-//       dispatch({
-//         type: ActionTypes.GET_PRIVATE_ARTICLES,
-//         payload: result,
-//       });
-//       history.push('/private');
-//     });
-//   };
-// }
 // ────────────────────────────────────────────────────────────────────────────────
 
 //
