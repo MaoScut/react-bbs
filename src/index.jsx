@@ -6,13 +6,15 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import App from './router';
+import logger from './middleware/logger';
+import checkAuth from './middleware/checkAuth';
 // const App = () => (
 //   <div>
 //     hhh
 //   </div>
 // );
 
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+const store = createStore(rootReducer, applyMiddleware(checkAuth, thunkMiddleware, logger));
 const render = (Component) => {
   ReactDom.render(
     <AppContainer>
