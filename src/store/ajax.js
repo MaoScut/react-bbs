@@ -53,9 +53,6 @@ export function fetchPrivateArticles() {
   // return fetchArticles().then(result => result.filter(v => v.ownerId === id));
 }
 
-export function add() {
-
-}
 export function deleteArticle(id) {
   return ajax('post', '/deleteArticle', { articleId: id });
 }
