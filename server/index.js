@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const bodyParser = require('body-parser');
-const session = require('express-session');
+// const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const config = require('../webpack.config.selfserver');
 const path = require('path');
@@ -53,6 +53,7 @@ app.use((req, res, next) => {
     if (!req.cookies.userId) {
       res.end(JSON.stringify({
         err: {
+          type: 'NEED_AUTH',
           message: '请先登录！',
         },
       }));
@@ -77,30 +78,22 @@ app.get('/fetchTopicContent', (req, res) => {
 });
 
 // post请求
-app.post('/login', (req, res) => {
-  requestHandler.login(req, res);
-});
-app.post('/regist', (req, res) => {
-  requestHandler.regist(req, res);
-});
-app.post('/save', (req, res) => {
-  requestHandler.save(req, res);
-});
-app.post('/follow', (req, res) => {
-  requestHandler.addFollow(req, res);
-});
-app.post('/upTopic', (req, res) => {
-  requestHandler.upTopic(req, res);
-});
-app.post('/upFollow', (req, res) => {
-  requestHandler.upFollow(req, res);
-});
-app.post('/setUserHeadImg', (req, res) => {
-  requestHandler.setUserHeadImg(req, res);
-});
-app.post('/logout', (req, res) => {
-  requestHandler.logout(req, res);
-});
+app.post('/login',
+  requestHandler.login);
+app.post('/regist',
+  requestHandler.regist);
+app.post('/save',
+  requestHandler.save);
+app.post('/follow',
+  requestHandler.addFollow);
+app.post('/upTopic',
+  requestHandler.upTopic);
+app.post('/upFollow',
+  requestHandler.upFollow);
+app.post('/setUserHeadImg',
+  requestHandler.setUserHeadImg);
+app.post('/logout',
+  requestHandler.logout);
 
 app.listen(port, (error) => {
   if (error) {
