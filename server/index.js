@@ -49,7 +49,7 @@ app.use(serveStatic(path.resolve('./dist')));
 //   cookie: { maxAge: 60000 },
 // }));
 app.use((req, res, next) => {
-  if (req.method === 'POST' && req.url !== '/login') {
+  if (req.method === 'POST' && req.url !== '/login' && req.url !== '/regist') {
     if (!req.cookies.userId) {
       res.end(JSON.stringify({
         err: {
